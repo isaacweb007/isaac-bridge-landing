@@ -32,7 +32,7 @@ async function ranged(request, res) {
   const m = /^bytes=(\d*)-(\d*)$/.exec(request.headers.get('range') || '');
   const headers = new Headers(res.headers);
   headers.set('accept-ranges', 'bytes');
-  if (res.status !== 200 || !m || (!m[1] && !m[2])) return new Response(res.body, { status: res.status, headers });
+  if (request.method !== 'GET' || res.status !== 200 || !m || (!m[1] && !m[2])) return new Response(res.body, { status: res.status, headers });
   const buf = await res.arrayBuffer(), size = buf.byteLength;
   let start = m[1] ? +m[1] : Math.max(0, size - +m[2]);
   let end = m[1] && m[2] ? Math.min(+m[2], size - 1) : size - 1;
