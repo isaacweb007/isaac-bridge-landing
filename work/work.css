@@ -15,7 +15,7 @@ img{display:block;max-width:100%}
 .tlink{font-weight:700;font-size:17px;border-bottom:2px solid var(--ink);padding-bottom:2px}
 
 .nav{height:76px}.nav .wrap{height:100%;display:flex;align-items:center;gap:32px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}.logo .star{font-size:26px}
+.logo{display:flex;align-items:center}.logo img{height:54px;width:auto;display:block}
 .back{font-weight:600;font-size:15px;opacity:.7;margin-right:auto}.back:hover{opacity:1}
 
 /* hero: the product name is the picture's caption, the screen is the picture */
@@ -85,7 +85,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px}
 @media (max-width:767px){
   html,body{overflow-x:clip}
   .wrap{padding:0 20px}.nav{height:64px}.nav .wrap{gap:16px}
-  .logo{font-size:17px}.logo .star{font-size:22px}
+  .logo img{height:42px}
   .nav .btn.sm{width:44px;height:44px;padding:0;justify-content:center;font-size:0;gap:0}.nav .btn.sm i{width:44px;height:44px;font-size:15px}
   .hero{padding-top:36px}
   h1{font-size:60px}.tag{font-size:24px}

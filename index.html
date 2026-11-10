@@ -11,8 +11,8 @@
 <meta property="og:description" content="아이작브릿지는 웹과 앱, 업무 시스템, 그 뒤의 서버와 연동을 개발합니다.">
 <meta property="og:url" content="https://isaacbridge.com/"><meta property="og:image" content="https://isaacbridge.com/media/og.jpg">
 <meta property="og:locale" content="ko_KR"><meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"주식회사 아이작브릿지","url":"https://isaacbridge.com/","foundingDate":"2026-10-16","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"인천광역시","addressLocality":"연수구","streetAddress":"하모니로178번길 22, 7층 707-차67호"}}</script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Cpath d='M0 -11C2.5 -4.1 4.1 -2.5 11 0C4.1 2.5 2.5 4.1 0 11C-2.5 4.1 -4.1 2.5 -11 0C-4.1 -2.5 -2.5 -4.1 0 -11Z' fill='%23FFC800' stroke='%231E1F1D' stroke-width='1.2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"주식회사 아이작브릿지","url":"https://isaacbridge.com/","foundingDate":"2026-10-16","logo":"https://isaacbridge.com/media/brand/isaacbridge-logo.png","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"인천광역시","addressLocality":"연수구","streetAddress":"하모니로178번길 22, 7층 707-차67호"}}</script>
+<link rel="icon" href="media/brand/isaacbridge-icon.svg" type="image/svg+xml"><link rel="icon" href="media/brand/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="media/brand/apple-touch-icon.png">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
 <style>
 /* Design read: software studio landing for Korean B2B buyers, kinetic-typography language,
@@ -40,8 +40,8 @@ img,video{display:block;max-width:100%}
 /* ---------- nav ---------- */
 .nav{position:absolute;inset:0 0 auto 0;z-index:3;height:76px}
 .nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em}
-.logo .star{font-size:26px}
+.logo{display:flex;align-items:center}
+.logo img{height:54px;width:auto;display:block}
 .links{display:flex;gap:36px;font-weight:600;font-size:15px}
 .links a{opacity:.72;transition:opacity .3s}.links a:hover{opacity:1}
 .nr{display:flex;align-items:center;gap:22px;font-weight:700;font-size:13px}
@@ -170,7 +170,7 @@ h2{font-size:clamp(40px,5vw,76px);font-weight:900;line-height:1.08;letter-spacin
 
 footer{background:var(--ink);color:#c9ccc7;padding:72px 0 56px;font-size:14px;line-height:1.9}
 footer .wrap{display:grid;grid-template-columns:1fr auto;gap:48px}
-footer .logo{color:#fff}
+footer .logo img{height:64px}
 footer .line{margin-top:14px;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.03em}
 footer .line .w{overflow:hidden;vertical-align:top;padding-bottom:.08em}
 footer dl{display:grid;grid-template-columns:auto auto;gap:4px 24px}
@@ -183,7 +183,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;disp
   .wrap{padding:0 20px}
   .links,.nr>span{display:none}
   .nav{height:64px}
-  .logo{font-size:17px}.logo .star{font-size:22px}
+  .logo img{height:42px}
   .nr .btn.sm{width:44px;height:44px;padding:0;justify-content:center;font-size:0;gap:0}
   .nr .btn.sm i{width:44px;height:44px;font-size:15px}
 
@@ -264,11 +264,11 @@ footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;disp
     </div>
   </div></div>
   <nav class="nav"><div class="wrap">
-    <a class="logo" href="#"><svg class="star"><use href="#st"/></svg>아이작브릿지</a>
+    <a class="logo" href="#"><img src="media/brand/isaacbridge-horizontal.svg" alt="아이작브릿지 ISAAC BRIDGE"></a>
     <div class="links"><a href="#work">프로젝트</a><a href="#fields">사업분야</a><a>회사소개</a><a>작업 일지</a></div>
     <div class="nr"><span>KO / EN</span><a class="btn sm" href="#contact"><i><svg class="star"><use href="#st"/></svg></i>프로젝트 문의하기</a></div>
   </div></nav>
-  <span class="corner l">ISAAC BRIDGE · SOFTWARE</span><span class="corner r">10 PROJECTS · 5 FIELDS</span>
+  <span class="corner l">WEB · APP · BUSINESS SYSTEMS</span><span class="corner r">10 PROJECTS · 5 FIELDS</span>
   <div class="wrap hero-body">
     <div class="sel" id="sel"><span class="sel-tag">H1 · Pretendard 900</span>
       <h1 id="title">실제 업무에 맞는<br><mark>소프트웨어</mark>.</h1>
@@ -352,7 +352,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;disp
 </main>
 
 <footer><div class="wrap">
-  <div><span class="logo"><svg class="star" style="color:var(--y)"><use href="#st"/></svg>아이작브릿지</span><div class="line">실제 업무에 맞춰 만드는 소프트웨어.</div></div>
+  <div><span class="logo"><img src="media/brand/isaacbridge-horizontal-white.svg" alt="아이작브릿지 ISAAC BRIDGE"></span><div class="line">실제 업무에 맞춰 만드는 소프트웨어.</div></div>
   <dl><dt>상호</dt><dd>주식회사 아이작브릿지</dd><dt>대표자</dt><dd>이지영</dd><dt>사업자등록번호</dt><dd>296-87-04307</dd><dt>사업장 주소</dt><dd>인천광역시 연수구 하모니로178번길 22, 7층 707-차67호</dd></dl>
   <div class="copy"><span>© 주식회사 아이작브릿지</span><span>개인정보 처리방침</span></div>
 </div></footer>
@@ -588,7 +588,7 @@ if (window.gsap && window.ScrollTrigger && window.splitText) {
   // footer: the star spins in, the line rises, the company details slide in one by one
   const ft = document.querySelector('footer');
   gsap.timeline({ scrollTrigger: once(ft, 'top 92%') })
-    .from(ft.querySelector('.logo .star'), { rotation: -180, scale: 0, duration: .9, ease: 'back.out(2)' })
+    .from(ft.querySelector('.logo img'), { clipPath: 'inset(0 100% 0 0)', duration: 1, ease: 'expo.inOut', clearProps: 'clipPath' })
     .from(split(ft.querySelector('.line')).chars, { yPercent: 100, duration: .6, ease: 'expo.out', stagger: .015 }, .15)
     .from(ft.querySelectorAll('dt, dd'), { opacity: 0, x: 16, duration: .5, ease: 'power3.out', stagger: .04 }, .2)
     .from(ft.querySelector('.copy'), { opacity: 0, y: 10, duration: .6, ease: 'power3.out' }, .5);
