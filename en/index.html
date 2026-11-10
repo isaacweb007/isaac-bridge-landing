@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Isaac Bridge · Web, apps and business systems</title>
+<meta name="description" content="Isaac Bridge builds web and mobile products, business systems and the backend behind them. See product workflows, delivered work and how we work.">
+<link rel="canonical" href="https://isaacbridge.com/en/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Isaac Bridge">
+<meta property="og:title" content="Isaac Bridge · Web, apps and business systems">
+<meta property="og:description" content="Isaac Bridge builds web and mobile products, business systems and the backend behind them.">
+<meta property="og:url" content="https://isaacbridge.com/en/"><meta property="og:image" content="https://isaacbridge.com/media/og.jpg">
+<meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"주식회사 아이작브릿지","url":"https://isaacbridge.com/en/","foundingDate":"2026-10-16","logo":"https://isaacbridge.com/media/brand/isaacbridge-logo.png","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"인천광역시","addressLocality":"연수구","streetAddress":"하모니로178번길 22, 7층 707-차67호"}}</script>
+<link rel="icon" href="../media/brand/isaacbridge-icon.svg" type="image/svg+xml"><link rel="icon" href="../media/brand/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="../media/brand/apple-touch-icon.png">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<style>
+/* Design read: software studio landing for Korean B2B buyers, kinetic-typography language,
+   light page with one yellow accent, native CSS + Higgsfield motion-graphics hero.
+   Dials: VARIANCE 8, MOTION 7, DENSITY 3. Radius system: cards 28px, all interactive elements pill. */
+:root{--y:#FFC800;--paper:#EDF0EE;--card:#FBFBFA;--ink:#1E1F1D;--muted:#565A54;--line:rgba(30,31,29,.14);
+  --ease:cubic-bezier(.16,1,.3,1);--font:'Pretendard Variable',Pretendard,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}
+body{font-family:var(--font);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+.wrap{max-width:1312px;margin:0 auto;padding:0 48px}
+.star{width:1em;height:1em;display:inline-block;vertical-align:-.1em}
+
+/* ---------- buttons (one CTA label on the whole page: 프로젝트 문의하기) ---------- */
+.btn{display:inline-flex;align-items:center;gap:12px;height:60px;padding:0 28px 0 10px;border-radius:999px;background:var(--ink);color:#fff;
+  font-weight:700;font-size:17px;white-space:nowrap;transition:transform .5s var(--ease)}
+.btn i{width:40px;height:40px;border-radius:50%;background:var(--y);display:grid;place-items:center;color:var(--ink);font-size:16px;transition:transform .6s var(--ease)}
+.btn:hover i{transform:rotate(90deg) scale(1.08)}
+.btn:active{transform:scale(.98)}
+.btn.sm{height:46px;font-size:15px;padding:0 20px 0 8px}.btn.sm i{width:30px;height:30px;font-size:12px}
+.tlink{font-weight:700;font-size:17px;display:inline-flex;gap:8px;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:2px}
+
+/* ---------- nav ---------- */
+.nav{position:absolute;inset:0 0 auto 0;z-index:3;height:76px}
+.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center}
+.logo img{height:54px;width:auto;display:block}
+.links{display:flex;gap:36px;font-weight:600;font-size:15px}
+.links a{opacity:.72;transition:opacity .3s}.links a:hover{opacity:1}
+.nr{display:flex;align-items:center;gap:22px;font-weight:700;font-size:13px}
+.lang{letter-spacing:.02em}.lang b{font-weight:800}.lang span{opacity:.45}
+
+/* ---------- hero: Higgsfield motion loop under live type ---------- */
+.hero{position:relative;min-height:100dvh;overflow:hidden;isolation:isolate;background:#E0E2E1}
+.stage{position:absolute;right:-4%;top:52%;width:72%;aspect-ratio:16/9;transform:translateY(-50%);z-index:0}
+.stage-in{position:absolute;inset:0;transform-origin:66% 50%}
+.stage video{display:block;width:100%;height:100%;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 22%),linear-gradient(0deg,transparent,#000 14%,#000 90%,transparent);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent,#000 22%),linear-gradient(0deg,transparent,#000 14%,#000 90%,transparent);mask-composite:intersect}
+/* product cards that fly out of the object and fan below it */
+.fan{position:absolute;inset:0}
+.card{position:absolute;left:66%;top:50%;width:clamp(84px,9.2vw,132px);margin:calc(clamp(84px,9.2vw,132px) * -.62) 0 0 calc(clamp(84px,9.2vw,132px) * -.5);
+  background:#fff;border-radius:14px;padding:6px 6px 0;box-shadow:0 18px 36px rgba(30,31,29,.22);will-change:transform}
+.card img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;border-radius:9px;background:var(--paper)}
+.card span{display:block;padding:6px 2px 8px;font-size:12px;font-weight:800;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card:hover{box-shadow:0 24px 44px rgba(30,31,29,.3)}
+.hero-body{position:relative;z-index:2;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-top:76px;padding-bottom:96px}
+/* the title sits in a design-tool selection box */
+.sel{position:relative;display:inline-block;padding:10px 16px 6px;margin-left:-16px;transform-origin:0 0;--box:0}
+.sel::before{content:"";position:absolute;inset:0;border:1.5px solid var(--ink);opacity:var(--box);pointer-events:none}
+.hd{position:absolute;width:12px;height:12px;background:#fff;border:1.5px solid var(--ink);opacity:var(--box)}
+.hd.tl{left:-6px;top:-6px}.hd.tr{right:-6px;top:-6px}.hd.bl{left:-6px;bottom:-6px}.hd.br{right:-6px;bottom:-6px}
+.sel-tag{position:absolute;left:-1px;top:-30px;background:var(--ink);color:#fff;font:600 12px/1 ui-monospace,'SF Mono',Menlo,monospace;padding:6px 8px;border-radius:4px;opacity:var(--box);white-space:nowrap}
+h1{font-size:clamp(52px,6.6vw,94px);font-weight:900;line-height:1.04;letter-spacing:-.065em;max-width:9.5em}
+h1 mark{background:none;color:inherit;position:relative;white-space:nowrap;--u:1}
+h1 mark::after{content:"";position:absolute;left:-.04em;right:.18em;bottom:.08em;height:.2em;background:var(--y);z-index:-1;transform-origin:left;transform:scaleX(var(--u))}
+.sub{margin-top:30px;font-size:21px;line-height:1.6;color:var(--muted);max-width:25em;font-weight:500;min-height:1.6em}
+.sub .caret{display:inline-block;width:2px;height:1.05em;background:var(--ink);vertical-align:-.15em;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.ctas{margin-top:40px;display:flex;align-items:center;gap:30px}
+.corner{position:absolute;top:96px;z-index:2;font:600 12px/1 ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.08em;color:var(--muted)}
+.corner.l{left:max(48px,calc((100vw - 1312px) / 2 + 48px))}.corner.r{right:max(48px,calc((100vw - 1312px) / 2 + 48px))}
+.cursor{position:absolute;left:0;top:0;width:26px;height:30px;z-index:4;opacity:0;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.25))}
+.pause{position:absolute;right:48px;bottom:40px;z-index:3;width:48px;height:48px;border-radius:999px;border:1.5px solid var(--ink);background:rgba(237,240,238,.6);
+  display:grid;place-items:center;font-size:13px;font-weight:800;cursor:pointer;backdrop-filter:blur(8px)}
+.motion-paused .track,.motion-paused .caret{animation-play-state:paused}
+
+/* ---------- the one marquee: project names ---------- */
+.band{background:var(--y);transform:rotate(-2deg);margin:-34px -40px 0;position:relative;z-index:2;overflow:hidden;padding:26px 0;box-shadow:0 30px 60px -30px rgba(120,90,0,.45)}
+.track{display:flex;width:max-content;gap:56px;font-weight:900;font-size:96px;letter-spacing:-.05em;line-height:1;white-space:nowrap}
+.track span{display:flex;align-items:center;gap:56px}
+.track .star{font-size:.5em}
+.track{animation:slide 38s linear infinite}
+.gsap .track{animation:none}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------- work bento: 7 projects, 7 cells ---------- */
+.work{padding:200px 0 150px}
+h2{font-size:clamp(40px,5vw,76px);font-weight:900;line-height:1.08;letter-spacing:-.06em}
+.lead{margin-top:24px;font-size:19px;line-height:1.7;color:var(--muted);max-width:34em}
+.bento{margin-top:72px;display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.cell{position:relative;border-radius:28px;overflow:hidden;background:var(--card);padding:36px;display:flex;flex-direction:column;min-height:520px;will-change:transform}
+/* cursor spotlight on hover */
+.cell::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:var(--spot,0);transition:opacity .45s;
+  background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,200,0,.22),transparent 62%)}
+.cell.dark::after{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.13),transparent 62%)}
+.cell.yellow::after{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.4),transparent 62%)}
+/* split type: words keep together, characters move */
+.w{display:inline-block;white-space:nowrap}.ch{display:inline-block}
+#work h2 .w,.cell h3 .w{overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em;vertical-align:top}
+.cell .tag{font-size:14px;font-weight:600;color:var(--muted)}
+.cell h3{margin-top:12px;font-size:52px;font-weight:900;letter-spacing:-.05em;line-height:1}
+.cell .u{margin-top:14px;font-size:21px;font-weight:700;letter-spacing:-.03em;line-height:1.4;max-width:17em}
+.cell .shot{position:absolute}
+.cell.dark{background:var(--ink);color:#fff}.cell.dark .tag{color:#b5b9b3}
+.cell.yellow{background:var(--y)}.cell.yellow .tag{color:#5a4700}
+.cell.grey{background:#E3E7E4}
+.cell.desk .shot{left:36px;right:-120px;top:230px;border-radius:12px;box-shadow:0 30px 60px rgba(30,31,29,.22)}
+.cell.dark.desk .shot{box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.cell.phone .shot{width:56%;left:50%;margin-left:-28%;top:205px;border-radius:26px;box-shadow:0 30px 60px rgba(30,31,29,.2)}
+.cell.type .type{margin-top:auto;font-size:104px;font-weight:900;letter-spacing:-.07em;line-height:.86}
+.cell.dark.type .type{color:var(--y)}
+/* Moabi: languages decode into each other */
+.t-lang .scr{display:inline-block;min-width:1.25em}
+/* Picklebally: a ball volleys between the two words */
+.t-ball{position:relative}.t-ball .w1,.t-ball .w2{display:inline-block;transform-origin:50% 100%}
+.t-ball .ball{position:absolute;left:0;top:0;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;background:#fff;box-shadow:0 6px 12px rgba(0,0,0,.35)}
+/* short drama: a 9:16 frame swiping through a vertical feed */
+.t-feed .ph{display:inline-block;position:relative;width:.44em;height:.78em;margin-left:.14em;vertical-align:-.04em;border:5px solid var(--ink);border-radius:14px;overflow:hidden}
+.t-feed .reel{position:absolute;left:5px;right:5px;top:5px}.t-feed .reel i{display:block;height:calc(.78em - 24px);margin-bottom:6px;border-radius:6px;background:var(--ink)}
+.t-feed .reel i:nth-child(2n){background:#fff}
+.t-feed .bar{position:absolute;left:0;bottom:0;height:4px;width:100%;background:#fff;transform-origin:left;transform:scaleX(0)}
+.cell .go{position:absolute;right:28px;top:28px;width:48px;height:48px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font-size:18px;transition:background .3s,transform .5s var(--ease)}
+.cell:hover .go{background:var(--y);border-color:var(--y);color:var(--ink)}
+.cell .go b{display:block;font-weight:400;transition:transform .5s var(--ease)}.cell:hover .go b{transform:rotate(-45deg)}
+.more{margin-top:44px;display:flex;justify-content:flex-end}
+
+/* ---------- what we build: variable-weight words ---------- */
+.build{padding:40px 0 170px}
+.rows{margin-top:64px}
+.row{--ln:1;position:relative;display:grid;grid-template-columns:1fr 420px;align-items:end;gap:48px;padding:28px 0 36px}
+.row::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line);transform-origin:left;transform:scaleX(var(--ln,1))}
+.row:first-child::before{height:1.5px;background:var(--ink)}
+#fields .word .w{overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em;vertical-align:top}
+.word{font-size:clamp(52px,7.4vw,112px);font-weight:900;letter-spacing:-.07em;line-height:.95}
+.row.thin .word{font-weight:200}
+.gsap .row.thin .word{font-weight:900}
+.row h4{font-size:26px;font-weight:800;letter-spacing:-.04em}
+.row p{margin-top:10px;font-size:17px;line-height:1.7;color:var(--muted)}
+.chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.chips a{height:40px;padding:0 16px;border-radius:999px;border:1.5px solid var(--ink);display:inline-flex;align-items:center;font-weight:700;font-size:14px;transition:background .3s}
+.chips a:hover{background:var(--y);border-color:var(--y)}
+
+/* ---------- how we build: one sentence that fills in as you read ---------- */
+.how{background:var(--card);border-radius:44px;margin:0 20px;padding:150px 0 140px}
+.sentence{margin-top:56px;font-size:clamp(34px,4.4vw,64px);font-weight:800;letter-spacing:-.055em;line-height:1.28;max-width:20em}
+.sentence b{font-weight:800;color:rgba(30,31,29,.16);transition:color .6s var(--ease),background-size .7s var(--ease);
+  background:linear-gradient(var(--y),var(--y)) 0 88% / 0% 30% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.sentence b.lit{color:var(--ink)}
+.sentence b.now{color:var(--ink);background-size:100% 30%}
+.steps{margin-top:64px;display:flex;flex-wrap:wrap;gap:12px}
+.steps span{height:52px;padding:0 24px;border-radius:999px;border:1.5px solid var(--ink);display:inline-flex;align-items:center;font-weight:700;font-size:16px}
+.steps span{transition:background .4s var(--ease),border-color .4s var(--ease),transform .5s var(--ease)}
+.steps span.on{background:var(--y);border-color:var(--y);transform:scale(1.06)}
+
+/* ---------- closing: the hero film seen through the type ---------- */
+.cta{padding:170px 0 150px}
+.mask{position:relative;overflow:hidden;border-radius:28px;isolation:isolate;background:var(--y);min-height:560px;display:flex;align-items:center;padding:0 56px}
+.mask video{position:absolute;right:-6%;top:50%;width:66%;height:auto;aspect-ratio:16/9;transform:translateY(-50%);mix-blend-mode:multiply;filter:brightness(1.14) contrast(1.04);
+  -webkit-mask-image:radial-gradient(ellipse 62% 64% at 60% 50%,#000 70%,transparent);mask-image:radial-gradient(ellipse 62% 64% at 60% 50%,#000 70%,transparent)}
+.mask .knock{position:relative;font-size:clamp(64px,8.4vw,128px);font-weight:900;letter-spacing:-.07em;line-height:1}
+.cta .row2{margin-top:40px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.cta p{font-size:19px;line-height:1.7;color:var(--muted);max-width:29em}
+
+footer{background:var(--ink);color:#c9ccc7;padding:72px 0 56px;font-size:14px;line-height:1.9}
+footer .wrap{display:grid;grid-template-columns:1fr auto;gap:48px}
+footer .logo img{height:64px}
+footer .line{margin-top:14px;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.03em}
+footer .line .w{overflow:hidden;vertical-align:top;padding-bottom:.08em}
+footer dl{display:grid;grid-template-columns:auto auto;gap:4px 24px}
+footer dt{color:#8d918b}
+footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;display:flex;justify-content:space-between}
+
+.shot-mode .hero,.shot-mode .hero-body{min-height:900px}
+@media (max-width:767px){
+  html,body{overflow-x:clip}
+  .wrap{padding:0 20px}
+  .links,.nr>span{display:none}
+  .nav{height:64px}
+  .logo img{height:42px}
+  .nr .btn.sm{width:44px;height:44px;padding:0;justify-content:center;font-size:0;gap:0}
+  .nr .btn.sm i{width:44px;height:44px;font-size:15px}
+
+  /* hero: type first, then the film cropped to the object */
+  .hero{min-height:auto;display:flex;flex-direction:column}
+  .hero-body{min-height:auto;padding-top:120px;padding-bottom:0;justify-content:flex-start}
+  .shot-mode .hero,.shot-mode .hero-body{min-height:auto}
+  h1{font-size:44px;letter-spacing:-.06em}
+  .sub{margin-top:20px;font-size:17px}
+  .ctas{margin-top:28px;flex-direction:column;align-items:flex-start;gap:20px}
+  .stage{position:relative;order:2;right:auto;top:auto;transform:none;width:180%;max-width:none;margin:8px 0 0 -62%}
+  .stage video{-webkit-mask-image:linear-gradient(0deg,transparent,#000 18%,#000 88%,transparent);mask-image:linear-gradient(0deg,transparent,#000 18%,#000 88%,transparent);-webkit-mask-composite:source-over;mask-composite:add}
+  .card span{font-size:10px;padding:4px 1px 6px}
+  .corner{top:84px}.corner.l{left:20px}.corner.r{display:none}
+  .sel-tag{font-size:10px;top:-26px}
+  .pause{right:20px;bottom:auto;top:84px;width:40px;height:40px}
+
+  .band{margin:-26px -30px 0;padding:16px 0}
+  .track{font-size:52px;gap:32px}.track span{gap:32px}
+
+  /* work: one column, every cell keeps its own colour */
+  .work{padding:110px 0 90px}
+  h2{font-size:34px;letter-spacing:-.055em}
+  .lead{font-size:16px;margin-top:16px}
+  .bento{margin-top:40px;grid-template-columns:1fr;gap:14px}
+  .cell{grid-column:auto!important;min-height:440px;padding:26px;border-radius:24px}
+  .cell h3{font-size:40px}
+  .cell .u{font-size:18px}
+  .cell.desk .shot{left:26px;right:-140px;top:200px}
+  .cell.phone .shot{width:64%;margin-left:-32%;top:180px}
+  .cell.type{min-height:340px}.cell.type .type{font-size:84px}
+  .cell .go{right:20px;top:20px;width:40px;height:40px}
+  .more{justify-content:flex-start;margin-top:28px}
+
+  .build{padding:20px 0 100px}
+  .rows{margin-top:36px}
+  .row{grid-template-columns:1fr;gap:14px;padding:22px 0 28px}
+  .word{font-size:48px}
+  .row h4{font-size:22px}.row p{font-size:16px}
+
+  .how{margin:0 10px;border-radius:32px;padding:90px 0 80px}
+  .sentence{margin-top:32px;font-size:28px;line-height:1.36}
+  .steps{margin-top:36px;gap:8px}
+  .steps span{height:44px;padding:0 16px;font-size:15px}
+
+  .cta{padding:100px 0 90px}
+  .mask{min-height:500px;align-items:flex-start;padding:40px 26px 0;border-radius:24px}
+  .mask .knock{font-size:46px}
+  .mask{min-height:0;flex-direction:column}
+  .mask video{position:relative;order:2;inset:auto;width:190%;max-width:none;margin:0 0 -6% -70%;transform:none;
+    -webkit-mask-image:linear-gradient(180deg,transparent,#000 18%);mask-image:linear-gradient(180deg,transparent,#000 18%)}
+  .cta .row2{flex-direction:column;align-items:flex-start;gap:24px;margin-top:28px}
+  .cta p{font-size:16px}
+
+  footer{padding:56px 0 40px}
+  footer .wrap{grid-template-columns:1fr;gap:32px}
+  footer dl{grid-template-columns:auto 1fr;gap:4px 16px}
+  footer .copy{flex-direction:column;gap:4px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="st" viewBox="-12 -12 24 24"><path d="M0 -11C2.5 -4.1 4.1 -2.5 11 0C4.1 2.5 2.5 4.1 0 11C-2.5 4.1 -4.1 2.5 -11 0C-4.1 -2.5 -2.5 -4.1 0 -11Z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<header class="hero" id="hero">
+  <div class="stage" id="stage"><div class="stage-in" id="stageIn">
+    <video id="film" autoplay muted loop playsinline preload="auto" poster="../media/hero-poster.webp" aria-hidden="true">
+      <source src="../media/hero-loop.mp4" type="video/mp4">
+    </video>
+    <div class="fan" id="fan">
+      <a class="card" href="work/marbl-works.html"><img src="../media/marbl-works/01-dashboard-ko.png" alt="MARBL Works dashboard"><span>MARBL Works</span></a>
+      <a class="card" href="work/rami.html"><img src="../media/rami/01-guest-menu.png" alt="Rami AI guest menu screen"><span>Rami AI</span></a>
+      <a class="card" href="work/partya.html"><img src="../media/partya/01-feed.jpg" alt="Partya feed screen"><span>Partya</span></a>
+      <a class="card" href="work/moa.html"><img src="../media/moa/today-ko.webp" alt="MOA Today screen"><span>MOA</span></a>
+      <a class="card" href="work/gateway.html"><img src="../media/gateway/bus-window-rain-night-pc.jpg" alt="The view from a Gateway bus window"><span>Gateway</span></a>
+    </div>
+  </div></div>
+  <nav class="nav"><div class="wrap">
+    <a class="logo" href="#"><img src="../media/brand/isaacbridge-horizontal.svg" alt="Isaac Bridge"></a>
+    <div class="links"><a href="#work">Work</a><a href="#fields">Fields</a><a href="company.html">Company</a><a href="log.html">Build log</a></div>
+    <div class="nr"><a class="lang" href="../index.html" hreflang="ko">KO <span>/</span> <b>EN</b></a><a class="btn sm" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>Discuss your project</a></div>
+  </div></nav>
+  <span class="corner l">WEB · APP · BUSINESS SYSTEMS</span><span class="corner r">10 PROJECTS · 5 FIELDS</span>
+  <div class="wrap hero-body">
+    <div class="sel" id="sel"><span class="sel-tag">H1 · Pretendard 900</span>
+      <h1 id="title">Software that fits<br><mark>the work</mark>.</h1>
+      <i class="hd tl"></i><i class="hd tr"></i><i class="hd bl"></i><i class="hd br" id="grip"></i></div>
+    <p class="sub" id="sub">We build the web and mobile products your customers use, and the systems your team works with.</p>
+    <div class="ctas" id="ctas"><a class="btn" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>Discuss your project</a><a class="tlink" href="#work">Explore the work →</a></div>
+  </div>
+  <svg class="cursor" id="cursor" viewBox="0 0 26 30" aria-hidden="true"><path d="M2 2v22l6-6 4.5 9.5 4-2-4.5-9H20z" fill="#1E1F1D" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+  <button class="pause" id="pause" aria-label="Pause motion">II</button>
+</header>
+
+<div class="band" aria-hidden="true"><div class="track">
+  <span>MARBL Works<svg class="star"><use href="#st"/></svg>Moabi<svg class="star"><use href="#st"/></svg>Rami AI<svg class="star"><use href="#st"/></svg>Partya<svg class="star"><use href="#st"/></svg>Picklebally<svg class="star"><use href="#st"/></svg>Short-drama streaming<svg class="star"><use href="#st"/></svg>SceneDeal<svg class="star"><use href="#st"/></svg>ONE AI<svg class="star"><use href="#st"/></svg>MOA<svg class="star"><use href="#st"/></svg>Gateway<svg class="star"><use href="#st"/></svg></span>
+  <span>MARBL Works<svg class="star"><use href="#st"/></svg>Moabi<svg class="star"><use href="#st"/></svg>Rami AI<svg class="star"><use href="#st"/></svg>Partya<svg class="star"><use href="#st"/></svg>Picklebally<svg class="star"><use href="#st"/></svg>Short-drama streaming<svg class="star"><use href="#st"/></svg>SceneDeal<svg class="star"><use href="#st"/></svg>ONE AI<svg class="star"><use href="#st"/></svg>MOA<svg class="star"><use href="#st"/></svg>Gateway<svg class="star"><use href="#st"/></svg></span>
+</div></div>
+
+<main>
+<section class="work" id="work"><div class="wrap">
+  <h2>Before we explain,<br>we show you the work.</h2>
+  <p class="lead">Different kinds of work, addressed through software. See how each product works and what we built.</p>
+
+  <div class="bento">
+    <a class="cell dark desk" style="grid-column:span 8" href="work/marbl-works.html"><span class="tag">ERP & business systems · In development</span><h3>MARBL Works</h3>
+      <p class="u">From an order to the production floor.</p><img class="shot" src="../media/marbl-works/01-dashboard-ko.png" alt="MARBL Works dashboard with a new-order alert, recent orders, stock and shipment status" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
+    <a class="cell yellow type" style="grid-column:span 4" href="work/moabi.html"><span class="tag">ERP & business systems · Live</span><h3>Moabi</h3>
+      <p class="u">Write in Korean, it arrives in Vietnamese</p><div class="type t-lang"><span class="scr a">KO</span><br>→<span class="scr b">VI</span></div><span class="go" aria-hidden="true"><b>→</b></span></a>
+    <a class="cell grey phone" style="grid-column:span 4" href="work/rami.html"><span class="tag">O2O platforms · Demo</span><h3>Rami AI</h3>
+      <p class="u">Rami, the shop that speaks your language</p><img class="shot" src="../media/rami/01-guest-menu.png" alt="Guest app menu. At table 7, adding dishes such as kimchi pancake and choosing quantities" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
+    <a class="cell light phone" style="grid-column:span 4" href="work/partya.html"><span class="tag">O2O platforms · In development</span><h3>Partya</h3>
+      <p class="u">Discover it in reels, join in one tap</p><img class="shot" src="../media/partya/01-feed.jpg" alt="Reels feed. A rooftop pool party video with a “Join in one tap” button and the spots left" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
+    <a class="cell dark type" style="grid-column:span 4" href="work/picklebally.html"><span class="tag">O2O platforms · Launched</span><h3>Picklebally</h3>
+      <p class="u">Pickleball court booking and match-making in Ho Chi Minh City</p><div class="type t-ball"><span class="w1">Book.</span><br><span class="w2">Play.</span><i class="ball"></i></div><span class="go" aria-hidden="true"><b>→</b></span></a>
+    <a class="cell yellow type" style="grid-column:span 4" href="work/shortdrama.html"><span class="tag">Content & media · Beta</span><h3>Short-drama<br>streaming</h3>
+      <p class="u">Vertical dramas, right inside Telegram</p><div class="type t-feed">9:16<span class="ph"><span class="reel"><i></i><i></i><i></i><i></i></span><b class="bar"></b></span></div><span class="go" aria-hidden="true"><b>→</b></span></a>
+    <a class="cell light desk" style="grid-column:span 8" href="work/scenedeal.html"><span class="tag">Content & media · Beta</span><h3>SceneDeal</h3>
+      <p class="u">Get the customer's question to the team that can answer it.</p><img class="shot" src="../media/scenedeal/01-home-ko.png" alt="SceneDeal home with the line “The next hit starts at SceneDeal.” and title posters marked SAMPLE" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
+    <a class="cell light phone" style="grid-column:span 4" href="work/one-ai.html"><span class="tag">AI & lifestyle apps · Beta</span><h3>ONE AI</h3>
+      <p class="u">From a conversation to work you can take forward.</p><img class="shot" src="../media/one-ai/01-mobile-home-ko.png" alt="ONE AI mobile home with the prompt “What shall we work on today?” and buttons to organize material, create a document or create an image" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
+    <a class="cell grey phone" style="grid-column:span 4" href="work/moa.html"><span class="tag">AI & lifestyle apps · Launched</span><h3>MOA</h3>
+      <p class="u">Keep the day connected.</p><img class="shot" src="../media/moa/today-ko.webp" alt="MOA Today screen showing today's top three tasks, routines, schedule and remaining budget" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
+    <a class="cell dark desk" style="grid-column:span 4" href="work/gateway.html"><span class="tag">Gateway · Beta</span><h3>Gateway</h3>
+      <p class="u">A bus with no destination, a short break</p><img class="shot" src="../media/gateway/bus-window-rain-night-pc.jpg" alt="A bus window seat on a rainy night, with raindrops on the glass. PC screen with bus radio, curtain, zoom and get-off buttons below" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
+  </div>
+  <div class="more"><a class="tlink" href="#fields">See our fields →</a></div>
+</div></section>
+
+<section class="build" id="fields"><div class="wrap">
+  <h2>Across five fields,<br>we build products people actually use.</h2>
+  <p class="lead">One team builds the web and mobile products, the business systems, and the backend and integrations behind them.</p>
+  <div class="rows">
+    <div class="row"><div class="word">ERP & business systems</div><div><p>We connect the work a company does every day, like orders, production, stock and accounting, in one system.</p>
+      <div class="chips"><a href="work/marbl-works.html">MARBL Works</a><a href="work/moabi.html">Moabi</a></div></div></div>
+    <div class="row thin"><div class="word">O2O platforms</div><div><p>We connect real-world places, like shops, courts and meetups, to booking, ordering and joining in an app.</p>
+      <div class="chips"><a href="work/rami.html">Rami AI</a><a href="work/partya.html">Partya</a><a href="work/picklebally.html">Picklebally</a></div></div></div>
+    <div class="row"><div class="word">Content & media</div><div><p>We build platforms for watching content, trading it and answering customer questions.</p>
+      <div class="chips"><a href="work/shortdrama.html">Short-drama streaming</a><a href="work/scenedeal.html">SceneDeal</a></div></div></div>
+    <div class="row thin"><div class="word">AI & lifestyle apps</div><div><p>We turn AI and everyday records into work and habits you can keep building on.</p>
+      <div class="chips"><a href="work/one-ai.html">ONE AI</a><a href="work/moa.html">MOA</a></div></div></div>
+    <div class="row"><div class="word">Gateway</div><div><p>A project we are building now: a web service where you pick up a ticket at a 3D bus terminal and take a break riding a bus with others.</p>
+      <div class="chips"><a href="work/gateway.html">Gateway · Beta</a></div></div></div>
+  </div>
+</div></section>
+
+<section class="how"><div class="wrap">
+  <h2>A clear problem. A working product.</h2>
+  <p class="sentence" id="sentence">
+    <b>We work out who needs to do what,</b> <b>agree how far this release goes,</b> <b>align the screen flow and the data first,</b>
+    <b>build the real working flow,</b> <b>and hand it over so the next team can take it forward.</b>
+  </p>
+  <div class="steps" id="steps"><span>Define the problem</span><span>Design</span><span>Build</span><span>Deliver and operate</span></div>
+</div></section>
+
+<section class="cta" id="contact"><div class="wrap">
+  <div class="mask">
+    <video autoplay muted loop playsinline poster="../media/hero-poster.webp" aria-hidden="true"><source src="../media/hero-loop.mp4" type="video/mp4"></video>
+    <h2 class="knock">Tell us about<br>your project.</h2>
+  </div>
+  <div class="row2"><p>Describe the work you want to improve and where things stand today. We will define the software and the first step with you.</p>
+    <a class="btn" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>Discuss your project</a></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div><span class="logo"><img src="../media/brand/isaacbridge-horizontal-white.svg" alt="Isaac Bridge"></span><div class="line">Software built around real work.</div></div>
+  <dl><dt>Legal name</dt><dd>Isaac Bridge Co., Ltd.</dd><dt>Representative</dt><dd>Lee Ji-young</dd><dt>Business registration no.</dt><dd>296-87-04307</dd><dt>Registered address</dt><dd>707-Cha67, 7F, 22 Harmony-ro 178beon-gil, Yeonsu-gu, Incheon, Korea</dd></dl>
+  <div class="copy"><span>© Isaac Bridge Co., Ltd.</span><span>Privacy Policy</span></div>
+</div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script>
+const qs = new URLSearchParams(location.search);
+if (qs.has('shot')) document.documentElement.classList.add('shot-mode');
+
+/* ---------- playback: everything moves on arrival; the round button stops and resumes it all ---------- */
+const films = [...document.querySelectorAll('video')];
+const btn = document.getElementById('pause');
+let paused = false;
+const onScreen = new Set();
+const play = v => v.play().catch(() => {}); // a blocked autoplay starts on the first touch, click or key (below)
+const sync = () => {
+  films.forEach(v => (!paused && onScreen.has(v)) ? play(v) : v.pause());
+  document.documentElement.classList.toggle('motion-paused', paused);
+  if (window.gsap) paused ? gsap.globalTimeline.pause() : gsap.globalTimeline.resume();
+  btn.textContent = paused ? '▶' : 'II';
+  btn.setAttribute('aria-label', paused ? 'Play motion' : 'Pause motion');
+};
+new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target)); sync(); }).observe(films[0]);
+films.slice(1).forEach(v => new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target)); sync(); }).observe(v));
+btn.onclick = () => { paused = !paused; sync(); };
+['pointerdown', 'keydown', 'touchstart'].forEach(t => addEventListener(t, () => { if (!paused) sync(); }, { once: true, passive: true }));
+
+/* ---------- hero motion graphics: 120 BPM, one beat = 0.5 s ---------- */
+if (window.gsap) {
+  const B = 0.5, hero = document.getElementById('hero'), stage = document.getElementById('stage');
+  const cards = [...document.querySelectorAll('#fan .card')];
+  const sel = document.getElementById('sel'), grip = document.getElementById('grip'), cursor = document.getElementById('cursor');
+  const sub = document.getElementById('sub');
+  // type-on: one span per character, revealed in order
+  const text = sub.textContent; sub.textContent = '';
+  const chars = [...text].map(c => { const s = document.createElement('span'); s.textContent = c; s.style.visibility = 'hidden'; sub.append(s); return s; });
+  const caret = document.createElement('i'); caret.className = 'caret'; caret.style.opacity = 0; sub.append(caret);
+
+  // fan: [x, y, rotation] as shares of the stage; phones use a tighter arc that stays on screen
+  const phone = matchMedia('(max-width:767px)').matches;
+  const FAN = phone ? [[.42, .78, -12], [.52, .72, -6], [.62, .70, 0], [.72, .72, 6], [.82, .78, 12]]
+                    : [[.27, .77, -14], [.40, .71, -7], [.53, .69, 0], [.66, .71, 7], [.79, .77, 14]];
+  const place = () => { const w = stage.offsetWidth, h = stage.offsetHeight;
+    return FAN.map(([x, y, r]) => ({ x: (x - .66) * w, y: (y - .5) * h, r, peak: (.1 - .5) * h })); };
+  let T = place();
+
+  // where the grip sits at a given selection scale, in hero coordinates
+  const gripAt = scale => { const h = hero.getBoundingClientRect(), s = sel.getBoundingClientRect(), cur = gsap.getProperty(sel, 'scale');
+    const w0 = s.width / cur, h0 = s.height / cur; return { x: s.left - h.left + w0 * scale - 4, y: s.top - h.top + h0 * scale - 4 }; };
+
+  gsap.set(sel, { scale: .86, '--box': 0 });
+  const g0 = gripAt(.86), g1 = gripAt(1);
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl.addLabel('pop', 0)
+    .from('.corner', { opacity: 0, y: -10, duration: B, stagger: B / 2 }, 0)
+    .from(stage, { scale: .8, opacity: 0, duration: B * 1.2, ease: 'back.out(1.8)' }, 0)
+    .fromTo('#stageIn', { scale: 1 }, { scale: 1.035, duration: 6, ease: 'none' }, 0)
+    .from('.nav', { opacity: 0, y: -12, duration: B }, B / 2)
+    .addLabel('cards', 1);
+  cards.forEach((c, i) => {
+    const t = 1 + i * B / 2, d = T[i];                       // eighth notes
+    tl.fromTo(c, { x: 0, y: 0, scale: .2, rotation: 0, opacity: 0 }, { opacity: 1, scale: 1, duration: .2, ease: 'back.out(3)' }, t)
+      .to(c, { x: d.x, rotation: d.r, duration: B * 1.8, ease: 'power2.out' }, t)
+      .to(c, { keyframes: [{ y: d.peak * (0.7 + i % 2 * .15), duration: B * .8, ease: 'power2.out' }, { y: d.y, duration: B, ease: 'back.out(2.2)' }] }, t)
+      .call(() => gsap.to(c, { y: d.y - 8, duration: B * 2, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: i * .12 }), null, t + B * 1.8);
+  });
+  tl.addLabel('title', 2.5)
+    .from('#title', { opacity: 0, y: 28, fontWeight: 300, duration: B * 2 }, 'title')
+    .fromTo('#title mark', { '--u': 0 }, { '--u': 1, duration: B, ease: 'power2.inOut' }, 'title+=0.5')
+    .to(sel, { '--box': 1, duration: B / 2 }, 'title')
+    .fromTo(cursor, { x: g0.x + 260, y: g0.y + 180, opacity: 0 }, { x: g0.x, y: g0.y, opacity: 1, duration: B, ease: 'power2.inOut' }, 'title+=0.5')
+    .to(grip, { backgroundColor: '#FFC800', scale: 1.6, duration: .12 }, 'title+=1')          // grab on the beat
+    .to(sel, { scale: 1, duration: B, ease: 'power2.inOut' }, 'title+=1')
+    .to(cursor, { x: g1.x, y: g1.y, duration: B, ease: 'power2.inOut' }, 'title+=1')
+    .addLabel('release', 4)
+    .to(grip, { backgroundColor: '#ffffff', scale: 1, duration: .15 }, 'release')
+    .to(sel, { '--box': 0, duration: B / 2 }, 'release+=0.25')
+    .to(cursor, { x: '+=60', y: '+=40', opacity: 0, duration: B }, 'release+=0.25')
+    .set(caret, { opacity: 1 }, 'release')
+    .to(chars, { visibility: 'visible', duration: .01, stagger: .9 / chars.length, ease: 'none' }, 'release')
+    .from('#ctas > *', { opacity: 0, y: 18, scale: .9, duration: B, ease: 'back.out(2.4)', stagger: B / 2 }, 5)
+    .to(caret, { opacity: 0, duration: .2 }, 6);
+  addEventListener('resize', () => { if (tl.progress() === 1) { T = place(); cards.forEach((c, i) => gsap.set(c, { x: T[i].x, y: T[i].y })); } });
+  if (qs.has('t')) { tl.pause(+qs.get('t')); gsap.globalTimeline.getChildren(false, true, false).forEach(x => x !== tl && x.pause()); }
+}
+
+/* ---------- work section: every piece has its own motion ---------- */
+if (window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+  // split text into word spans holding character spans; keeps <br> and nested inline tags
+  const split = el => { const chars = [], words = [];
+    const walk = node => [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) { const f = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(tok => { if (!tok) return; if (/^\s+$/.test(tok)) return f.append(' ');
+          const w = document.createElement('span'); w.className = 'w'; words.push(w);
+          [...tok].forEach(c => { const ch = document.createElement('span'); ch.className = 'ch'; ch.textContent = c; w.append(ch); chars.push(ch); });
+          f.append(w); });
+        n.replaceWith(f); }
+      else if (n.nodeType === 1 && n.tagName !== 'BR') walk(n); });
+    walk(el); return { chars, words }; };
+  window.splitText = split;
+
+  const work = document.getElementById('work');
+  // headline: letters rise out of their words and thicken; the lead clears from a blur, word by word
+  const h2 = split(work.querySelector('h2')), lead = split(work.querySelector('.lead'));
+  gsap.timeline({ scrollTrigger: { trigger: work.querySelector('h2'), start: 'top 85%', once: true } })
+    .from(h2.chars, { yPercent: 115, rotate: 7, fontWeight: 200, duration: 1, ease: 'expo.out', stagger: .022 })
+    .from(lead.words, { opacity: 0, y: 14, filter: 'blur(8px)', duration: .7, ease: 'power3.out', stagger: .035 }, '-=.6');
+
+  // decode one string into another, letter by letter
+  const scramble = (el, to, dur = .55) => { const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', o = { p: 0 };
+    return gsap.to(o, { p: 1, duration: dur, ease: 'none', onUpdate: () => {
+      el.textContent = [...to].map((c, i) => o.p >= (i + 1) / to.length ? c : pool[Math.random() * 26 | 0]).join(''); } }); };
+  const loops = {
+    't-lang': t => { const a = t.querySelector('.a'), b = t.querySelector('.b');
+      const pairs = [['VI', 'KO'], ['KO', 'EN'], ['EN', 'KO'], ['KO', 'VI']], l = gsap.timeline({ repeat: -1 });
+      pairs.forEach(([x, y]) => l.add(scramble(a, x), '+=1.4').add(scramble(b, y), '<.12')); return l; },
+    't-ball': t => { const w1 = t.querySelector('.w1'), w2 = t.querySelector('.w2'), ball = t.querySelector('.ball');
+      const at = w => ({ x: w.offsetLeft + w.offsetWidth + 18, y: w.offsetTop + w.offsetHeight * .55 });
+      const A = at(w1), Bp = at(w2), top = Math.min(A.y, Bp.y) - 70;
+      gsap.set(ball, { x: A.x, y: A.y });
+      const hop = (from, to, word) => gsap.timeline()
+        .to(ball, { x: to.x, duration: .5, ease: 'none' })
+        .to(ball, { keyframes: [{ y: top, duration: .22, ease: 'power2.out' }, { y: to.y, duration: .28, ease: 'power2.in' }] }, 0)
+        .fromTo(word, { scaleY: .82, scaleX: 1.06 }, { scaleY: 1, scaleX: 1, duration: .5, ease: 'elastic.out(1.2,.4)' }, .5);
+      return gsap.timeline({ repeat: -1 }).add(hop(A, Bp, w2)).add(hop(Bp, A, w1), '+=.5').to({}, { duration: .5 }); },
+    't-feed': t => { const reel = t.querySelector('.reel'), bar = t.querySelector('.bar'), step = reel.firstElementChild.offsetHeight + 6;
+      return gsap.timeline({ repeat: -1 })
+        .fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: 1.5, ease: 'none' })
+        .to(reel, { y: -step, duration: .45, ease: 'power3.inOut' })
+        .set(reel, { y: 0 }).set(bar, { scaleX: 0 }); },
+  };
+
+  const cells = [...work.querySelectorAll('.cell')];
+  const parts = cells.map(c => ({ c, tag: split(c.querySelector('.tag')).chars, h3: split(c.querySelector('h3')).chars,
+    u: c.querySelector('.u'), go: c.querySelector('.go'), shot: c.querySelector('.shot'), type: c.querySelector('.type') }));
+  gsap.set(cells, { autoAlpha: 0 });
+  const reveal = (p, i) => {
+    const r = gsap.timeline({ delay: i * .12 })
+      .fromTo(p.c, { autoAlpha: 0, y: 90, scale: .94, clipPath: 'inset(16% 8% 16% 8% round 28px)' },
+                   { autoAlpha: 1, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.1, ease: 'expo.out', clearProps: 'clipPath' })
+      .from(p.tag, { opacity: 0, duration: .01, stagger: .025, ease: 'none' }, .25)                     // label types on
+      .from(p.h3, { yPercent: 115, fontWeight: 250, duration: .8, stagger: .035, ease: 'expo.out' }, .3) // name rises and thickens
+      .fromTo(p.u, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: .9, ease: 'power3.inOut', clearProps: 'clipPath' }, .5)
+      .from(p.go, { scale: 0, rotation: -180, duration: .8, ease: 'back.out(2)', clearProps: 'transform' }, .55);
+    if (p.shot) r.from(p.shot, { y: 140, rotation: -4, opacity: 0, duration: 1.3, ease: 'expo.out' }, .35);
+    if (p.type) { r.from(p.type, { yPercent: 25, opacity: 0, duration: .9, ease: 'expo.out' }, .45);
+      const kind = Object.keys(loops).find(k => p.type.classList.contains(k)); if (kind) r.call(() => loops[kind](p.type), null, 1.3); }
+  };
+  ScrollTrigger.batch(cells, { start: 'top 88%', once: true, interval: .1, batchMax: 3,
+    onEnter: batch => batch.forEach((c, i) => reveal(parts[cells.indexOf(c)], i)) });
+
+  // screens drift against the scroll inside their cards
+  parts.forEach(p => p.shot && gsap.fromTo(p.shot, { yPercent: 7 }, { yPercent: -7, ease: 'none',
+    scrollTrigger: { trigger: p.c, start: 'top bottom', end: 'bottom top', scrub: .6 } }));
+
+  // hover: the card tilts toward the pointer and a soft light follows it (mouse only)
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) cells.forEach(c => {
+    gsap.set(c, { transformPerspective: 1100 });
+    const rx = gsap.quickTo(c, 'rotationX', { duration: .6, ease: 'power3' }), ry = gsap.quickTo(c, 'rotationY', { duration: .6, ease: 'power3' });
+    c.addEventListener('pointermove', e => { const b = c.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
+      ry((x - .5) * 7); rx(-(y - .5) * 7); c.style.setProperty('--mx', x * 100 + '%'); c.style.setProperty('--my', y * 100 + '%'); });
+    c.addEventListener('pointerenter', () => { c.style.setProperty('--spot', 1); gsap.to(c, { y: -6, duration: .5, ease: 'power3.out' }); });
+    c.addEventListener('pointerleave', () => { rx(0); ry(0); c.style.setProperty('--spot', 0); gsap.to(c, { y: 0, duration: .6, ease: 'power3.out' }); });
+  });
+
+  gsap.from('#work .more', { opacity: 0, x: -24, duration: .8, ease: 'expo.out', scrollTrigger: { trigger: '#work .more', start: 'top 92%', once: true } });
+  addEventListener('load', () => ScrollTrigger.refresh());
+}
+
+// The sentence lights up phrase by phrase as it crosses the middle of the screen.
+const parts = [...document.querySelectorAll('#sentence b')], steps = [...document.querySelectorAll('#steps span')];
+const stepOf = [0, 0, 1, 2, 3];
+const light = n => { parts.forEach((b, i) => { b.classList.toggle('lit', i < n); b.classList.toggle('now', i === n - 1); });
+  steps.forEach((s, i) => s.classList.toggle('on', i === stepOf[Math.max(0, n - 1)])); };
+if (!qs.has('state') && !window.ScrollTrigger) { const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) light(parts.indexOf(e.target) + 1); }), { rootMargin: '-45% 0px -45% 0px' });
+  parts.forEach(b => so.observe(b)); }
+// Static review screenshots: ?state=mid shows the sentence half read.
+if (qs.get('state') === 'mid') light(3);
+
+/* ---------- the rest of the page: band, fields, method, contact, footer ---------- */
+if (window.gsap && window.ScrollTrigger && window.splitText) {
+  const split = window.splitText, fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  document.documentElement.classList.add('gsap');
+  const once = (trigger, start = 'top 85%') => ({ trigger, start, once: true });
+  const riseIn = (el, extra = {}) => gsap.from(split(el).chars, { yPercent: 115, rotate: 6, fontWeight: 200, duration: 1, ease: 'expo.out', stagger: .02, scrollTrigger: once(el), ...extra });
+  const blurIn = el => gsap.from(split(el).words, { opacity: 0, y: 14, filter: 'blur(8px)', duration: .7, ease: 'power3.out', stagger: .03, scrollTrigger: once(el, 'top 90%') });
+
+  // band: the names keep running and answer the scroll: faster when you scroll, backwards when you scroll up, leaning into the speed
+  const track = document.querySelector('.track');
+  const run = gsap.to(track, { xPercent: -50, duration: 38, ease: 'none', repeat: -1 }); run.totalTime(38 * 200);
+  const lean = gsap.quickTo(track, 'skewX', { duration: .4, ease: 'power3' });
+  let dir = 1;
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: self => { const v = self.getVelocity(); dir = self.direction || dir;
+    gsap.to(run, { timeScale: dir * Math.min(1 + Math.abs(v) / 260, 6), duration: .25, overwrite: true }); lean(gsap.utils.clamp(-10, 10, -v / 160)); } });
+  ScrollTrigger.addEventListener('scrollEnd', () => { gsap.to(run, { timeScale: dir, duration: .9, overwrite: true }); lean(0); });
+
+  // fields: lines draw across, names rise then gain weight as they reach the middle, notes and chips follow
+  const fields = document.getElementById('fields');
+  riseIn(fields.querySelector('h2')); blurIn(fields.querySelector('.lead'));
+  fields.querySelectorAll('.row').forEach(row => {
+    const word = row.querySelector('.word');
+    gsap.from(row, { '--ln': 0, duration: 1.3, ease: 'expo.inOut', scrollTrigger: once(row, 'top 92%') });
+    gsap.from(split(word).chars, { yPercent: 110, duration: .9, ease: 'expo.out', stagger: .03, scrollTrigger: once(row, 'top 88%') });
+    gsap.fromTo(word, { fontWeight: 150 }, { fontWeight: 900, ease: 'none', scrollTrigger: { trigger: row, start: 'top 85%', end: 'top 42%', scrub: .5 } });
+    gsap.from(row.querySelector('p'), { opacity: 0, y: 20, duration: .8, ease: 'power3.out', scrollTrigger: once(row, 'top 85%') });
+    gsap.from(row.querySelectorAll('.chips a'), { scale: .4, opacity: 0, duration: .6, ease: 'back.out(2.2)', stagger: .08, scrollTrigger: once(row, 'top 82%') });
+  });
+
+  // method: the panel opens with the scroll; the sentence fills word by word and the phrase being read lights its step
+  const how = document.querySelector('.how'), rad = parseFloat(getComputedStyle(how).borderTopLeftRadius) || 44;
+  gsap.fromTo(how, { clipPath: `inset(5% 3.5% 5% 3.5% round ${rad * 1.6}px)` }, { clipPath: `inset(0% 0% 0% 0% round ${rad}px)`, ease: 'none',
+    scrollTrigger: { trigger: how, start: 'top 95%', end: 'top 30%', scrub: .6 } });
+  riseIn(how.querySelector('h2'));
+  const sw = split(document.getElementById('sentence')).words;
+  if (!qs.has('state')) gsap.fromTo(sw, { color: 'rgba(30,31,29,.16)' }, { color: '#1E1F1D', ease: 'none', stagger: .1,
+    scrollTrigger: { trigger: '#sentence', start: 'top 78%', end: 'bottom 42%', scrub: .4,
+      onUpdate: self => light(Math.max(1, Math.ceil(self.progress * parts.length))) } });
+  gsap.from('#steps span', { y: 24, opacity: 0, duration: .6, ease: 'back.out(2)', stagger: .08, scrollTrigger: once('#steps', 'top 92%') });
+
+  // contact: the yellow block opens as a circle from the object, the film settles, the type rises, the button is magnetic
+  const mask = document.querySelector('.cta .mask'), film = mask.querySelector('video'), cbtn = document.querySelector('.cta .btn');
+  gsap.fromTo(mask, { clipPath: 'circle(0% at 72% 50%)' }, { clipPath: 'circle(150% at 72% 50%)', duration: 1.4, ease: 'expo.inOut', scrollTrigger: once(mask, 'top 80%') });
+  gsap.from(film, { scale: 1.35, duration: 2, ease: 'expo.out', scrollTrigger: once(mask, 'top 80%') });
+  riseIn(mask.querySelector('.knock'), { delay: .45, scrollTrigger: once(mask, 'top 80%') });
+  blurIn(document.querySelector('.cta .row2 p'));
+  gsap.from(cbtn, { scale: .6, opacity: 0, duration: .8, ease: 'back.out(2)', scrollTrigger: once(cbtn, 'top 95%') });
+  if (fine) { const mx = gsap.quickTo(cbtn, 'x', { duration: .5, ease: 'power3' }), my = gsap.quickTo(cbtn, 'y', { duration: .5, ease: 'power3' });
+    cbtn.addEventListener('pointermove', e => { const b = cbtn.getBoundingClientRect(); mx((e.clientX - b.left - b.width / 2) * .35); my((e.clientY - b.top - b.height / 2) * .35); });
+    cbtn.addEventListener('pointerleave', () => { mx(0); my(0); }); }
+
+  // footer: the star spins in, the line rises, the company details slide in one by one
+  const ft = document.querySelector('footer');
+  gsap.timeline({ scrollTrigger: once(ft, 'top 92%') })
+    .from(ft.querySelector('.logo img'), { clipPath: 'inset(0 100% 0 0)', duration: 1, ease: 'expo.inOut', clearProps: 'clipPath' })
+    .from(split(ft.querySelector('.line')).chars, { yPercent: 100, duration: .6, ease: 'expo.out', stagger: .015 }, .15)
+    .from(ft.querySelectorAll('dt, dd'), { opacity: 0, x: 16, duration: .5, ease: 'power3.out', stagger: .04 }, .2)
+    .from(ft.querySelector('.copy'), { opacity: 0, y: 10, duration: .6, ease: 'power3.out' }, .5);
+  ScrollTrigger.refresh();
+}
+</script>
+</body>
+</html>

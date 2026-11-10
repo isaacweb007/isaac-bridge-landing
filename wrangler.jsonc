@@ -5,6 +5,9 @@
   "main": "worker.js",
   "compatibility_date": "2026-11-01",
   "assets": { "directory": ".", "binding": "ASSETS", "run_worker_first": true },
+  // inquiry mail through Cloudflare Email Routing; both addresses must be verified destinations
+  "send_email": [{ "name": "MAIL", "allowed_destination_addresses": ["msc690428@gmail.com", "jiyoungjws1981@gmail.com"] }],
+  "observability": { "enabled": true },
   "routes": [
     { "pattern": "isaacbridge.com", "custom_domain": true },
     { "pattern": "www.isaacbridge.com", "custom_domain": true }

@@ -105,3 +105,4 @@ footer .wrap{display:flex;justify-content:space-between;gap:24px}
   footer .wrap{flex-direction:column}
 }
 .meta .dev{background:var(--y);border-color:var(--y)}
+.lang{font-weight:700;font-size:13px;letter-spacing:.02em}.lang b{font-weight:800}.lang span{opacity:.45}

@@ -1,0 +1,67 @@
+/* Shared base for the inner pages (company, log, contact). Same tokens, type and parts as the home (c-kinetic.html).
+   One accent (yellow), light page, Pretendard Variable everywhere; cards 28px, interactive parts pill. */
+:root{--y:#FFC800;--paper:#EDF0EE;--card:#FBFBFA;--ink:#1E1F1D;--muted:#565A54;--line:rgba(30,31,29,.14);
+  --ease:cubic-bezier(.16,1,.3,1);--font:'Pretendard Variable',Pretendard,system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--paper)}
+body{font-family:var(--font);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+button,input,textarea,select{font:inherit;color:inherit}
+.wrap{max-width:1312px;margin:0 auto;padding:0 48px}
+.star{width:1em;height:1em;display:inline-block;vertical-align:-.1em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:12px;height:60px;padding:0 28px 0 10px;border-radius:999px;background:var(--ink);color:#fff;border:0;cursor:pointer;
+  font-weight:700;font-size:17px;white-space:nowrap;transition:transform .5s var(--ease)}
+.btn i{width:40px;height:40px;border-radius:50%;background:var(--y);display:grid;place-items:center;color:var(--ink);font-size:16px;font-style:normal;transition:transform .6s var(--ease)}
+.btn:hover i{transform:rotate(90deg) scale(1.08)}
+.btn:active{transform:scale(.98)}
+.btn.sm{height:46px;font-size:15px;padding:0 20px 0 8px}.btn.sm i{width:30px;height:30px;font-size:12px}
+.tlink{font-weight:700;font-size:17px;display:inline-flex;gap:8px;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:2px}
+
+/* nav: same as the home, in flow at the top of the page */
+.nav{height:76px;position:relative;z-index:5}
+.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center}
+.logo img{height:54px;width:auto;display:block}
+.links{display:flex;gap:36px;font-weight:600;font-size:15px}
+.links a{opacity:.72;transition:opacity .3s}.links a:hover,.links a[aria-current]{opacity:1}
+.links a[aria-current]{background:linear-gradient(var(--y),var(--y)) 0 100%/100% 6px no-repeat}
+.nr{display:flex;align-items:center;gap:22px;font-weight:700;font-size:13px}
+.lang{letter-spacing:.02em}.lang b{font-weight:800}.lang span{opacity:.45}
+
+/* type */
+h1.page{font-size:clamp(56px,9vw,148px);font-weight:900;letter-spacing:-.07em;line-height:.95}
+h2{font-size:clamp(40px,5vw,76px);font-weight:900;line-height:1.08;letter-spacing:-.06em}
+.lead{margin-top:24px;font-size:19px;line-height:1.7;color:var(--muted);max-width:34em}
+.eyebrow{font:600 12px/1 ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.08em;color:var(--muted)}
+/* split type (site.js): words keep together, characters move */
+.w{display:inline-block;white-space:nowrap}.ch{display:inline-block}
+.mask .w{overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em;vertical-align:top}
+
+/* the one pause control for every motion on the page */
+.pause{position:fixed;right:24px;bottom:24px;z-index:20;width:48px;height:48px;border-radius:999px;border:1.5px solid var(--ink);background:rgba(237,240,238,.75);
+  display:grid;place-items:center;font-size:13px;font-weight:800;cursor:pointer;backdrop-filter:blur(8px)}
+
+/* footer */
+footer{background:var(--ink);color:#c9ccc7;padding:72px 0 56px;font-size:14px;line-height:1.9}
+footer .wrap{display:grid;grid-template-columns:1fr auto;gap:48px}
+footer .logo img{height:64px}
+footer .line{margin-top:14px;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.03em}
+footer dl{display:grid;grid-template-columns:auto auto;gap:4px 24px}
+footer dt{color:#8d918b}
+footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;display:flex;justify-content:space-between}
+
+@media (max-width:767px){
+  html,body{overflow-x:clip}
+  .wrap{padding:0 20px}
+  .links,.nr>.lang-wide{display:none}
+  .nav{height:64px}.logo img{height:42px}
+  .nr .btn.sm{width:44px;height:44px;padding:0;justify-content:center;font-size:0;gap:0}.nr .btn.sm i{width:44px;height:44px;font-size:15px}
+  h2{font-size:34px}.lead{font-size:16px}
+  .pause{right:16px;bottom:16px;width:42px;height:42px}
+  footer{padding:56px 0 40px}footer .wrap{grid-template-columns:1fr;gap:32px}footer dl{grid-template-columns:auto 1fr;gap:4px 16px}
+  footer .copy{flex-direction:column;gap:4px}
+}

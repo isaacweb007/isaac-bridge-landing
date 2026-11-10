@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>작업 일지 · 아이작브릿지</title>
+<meta name="description" content="아이작브릿지가 실제로 만들고 내놓은 것을 날짜순으로 적은 작업 기록입니다. ERP, O2O, 콘텐츠, AI, 게이트웨이와 이 웹사이트의 작업을 담았습니다.">
+<link rel="canonical" href="https://isaacbridge.com/log">
+<meta property="og:type" content="website"><meta property="og:site_name" content="아이작브릿지"><meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="작업 일지 · 아이작브릿지"><meta property="og:description" content="아이작브릿지가 실제로 만들고 내놓은 것을 날짜순으로 적은 작업 기록입니다. ERP, O2O, 콘텐츠, AI, 게이트웨이와 이 웹사이트의 작업을 담았습니다.">
+<meta property="og:url" content="https://isaacbridge.com/log"><meta property="og:image" content="https://isaacbridge.com/media/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="media/brand/isaacbridge-icon.svg" type="image/svg+xml"><link rel="icon" href="media/brand/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="media/brand/apple-touch-icon.png">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<link href="assets/site.css" rel="stylesheet">
+<style>
+/* ---------- work log ---------- */
+.lhero{padding:64px 0 24px}
+.lhero .lead{max-width:36em}
+.filters{position:sticky;top:12px;z-index:6;margin-top:44px;display:flex;flex-wrap:wrap;gap:6px;padding:6px;width:max-content;max-width:100%;
+  background:rgba(237,240,238,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:28px;box-shadow:0 10px 30px -18px rgba(30,31,29,.4)}
+.filters button{height:42px;padding:0 18px;border-radius:999px;border:1.5px solid transparent;background:transparent;font-weight:700;font-size:14px;cursor:pointer;
+  transition:background .3s,color .3s,border-color .3s}
+.filters button:hover{border-color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+.tl{position:relative;padding:64px 0 120px}
+.tl .rail{position:absolute;top:0;bottom:0;left:calc(48px + 180px + 32px - 1px);width:2px;background:var(--ink);transform-origin:top}
+.entry{display:grid;grid-template-columns:180px 64px 1fr;align-items:start;padding:28px 0}
+.entry[hidden]{display:none}
+.when{text-align:right;padding-top:18px}
+.when .d{display:block;font-size:52px;font-weight:900;letter-spacing:-.06em;line-height:1}
+.when .y{display:block;margin-top:6px;font:600 12px/1 ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.08em;color:var(--muted)}
+.dot{justify-self:center;margin-top:30px;width:16px;height:16px;border-radius:50%;background:var(--y);border:3px solid var(--ink);position:relative;z-index:1}
+.card{display:grid;grid-template-columns:1fr 300px;gap:28px;background:var(--card);border-radius:28px;padding:30px 30px 26px}
+.card .meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px;font-weight:700}
+.card .tag{padding:5px 12px;border-radius:999px;background:var(--y)}
+.card .prod{color:var(--muted)}
+.card h3{margin-top:14px;font-size:30px;font-weight:900;letter-spacing:-.05em;line-height:1.2}
+.card .sum{margin-top:12px;font-size:16px;line-height:1.75;color:var(--muted)}
+.card details{margin-top:16px}
+.card summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:700;font-size:14px;list-style:none}
+.card summary::-webkit-details-marker{display:none}
+.card summary::after{content:"+";width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:14px;line-height:1;transition:transform .4s var(--ease)}
+.card details[open] summary::after{transform:rotate(45deg)}
+.card ul{margin-top:12px;padding-left:18px;font-size:15px;line-height:1.75;color:var(--ink)}
+.card ul li+li{margin-top:4px}
+.card .go{display:inline-block;align-self:flex-start;margin-top:16px;font-weight:700;font-size:14px;border-bottom:2px solid var(--ink);padding-bottom:1px}
+.pic{grid-column:2;grid-row:1 / span 6;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--paper)}
+.pic img{position:absolute;inset:-10% 0;width:100%;height:120%;object-fit:cover;object-position:top}
+.pic.phone img{object-fit:contain;background:#E3E7E4}
+.pic.type{background:var(--ink);display:grid;place-items:center}
+.pic.type span{font-size:84px;font-weight:900;letter-spacing:-.07em;color:var(--y);line-height:1}
+
+.lcta{padding:40px 0 150px}
+.lcta .box{background:var(--y);border-radius:28px;padding:64px 56px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
+.lcta p{margin-top:16px;font-size:18px;line-height:1.7;max-width:28em}
+
+@media (max-width:767px){
+  .lhero{padding:40px 0 8px}
+  .filters{top:8px;margin-top:28px;border-radius:22px}
+  .filters button{height:38px;padding:0 13px;font-size:13px}
+  .tl{padding:40px 0 80px}
+  .tl .rail{left:calc(20px + 28px - 1px)}
+  .entry{grid-template-columns:56px 1fr;padding:18px 0}
+  .dot{grid-column:1;grid-row:1;margin-top:6px}
+  .when{grid-column:2;grid-row:1;text-align:left;padding:0;display:flex;align-items:baseline;gap:10px}
+  .when .d{font-size:36px}.when .y{margin:0}
+  .card{grid-column:2;grid-row:2;margin-top:12px;grid-template-columns:1fr;gap:0;padding:20px 20px 22px;border-radius:22px}
+  .pic{grid-column:1;grid-row:1;margin-bottom:18px}
+  .card h3{font-size:24px}.card .sum{font-size:15px}
+  .lcta{padding:20px 0 100px}.lcta .box{flex-direction:column;align-items:flex-start;padding:40px 24px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="st" viewBox="-12 -12 24 24"><path d="M0 -11C2.5 -4.1 4.1 -2.5 11 0C4.1 2.5 2.5 4.1 0 11C-2.5 4.1 -4.1 2.5 -11 0C-4.1 -2.5 -2.5 -4.1 0 -11Z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="index.html"><img src="media/brand/isaacbridge-horizontal.svg" alt="아이작브릿지 ISAAC BRIDGE"></a>
+  <div class="links"><a href="index.html#work">프로젝트</a><a href="index.html#fields">사업분야</a><a href="company.html">회사소개</a><a href="log.html" aria-current="page">작업 일지</a></div>
+  <div class="nr"><a class="lang lang-wide" href="en/log.html" hreflang="en"><b>KO</b> <span>/</span> EN</a><a class="btn sm" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>프로젝트 문의하기</a></div>
+</div></nav>
+
+<main>
+<header class="lhero"><div class="wrap">
+  <h1 class="page">작업 일지</h1>
+  <p class="lead">무엇을 만들었고, 무엇을 내놓았는지 날짜순으로 적습니다. 화면과 기록이 남은 일만 씁니다.</p>
+  <div class="filters" role="group" aria-label="분야로 거르기">
+    <button type="button" data-filter="all" aria-pressed="true">전체</button><button type="button" data-filter="erp" aria-pressed="false">ERP·업무 시스템</button><button type="button" data-filter="o2o" aria-pressed="false">O2O 플랫폼</button><button type="button" data-filter="content" aria-pressed="false">콘텐츠·미디어</button><button type="button" data-filter="ai" aria-pressed="false">AI·생활 앱</button><button type="button" data-filter="gateway" aria-pressed="false">게이트웨이</button><button type="button" data-filter="site" aria-pressed="false">회사·웹사이트</button>
+  </div>
+</div></header>
+
+<section class="tl" aria-label="작업 기록"><div class="wrap" style="position:relative">
+  <i class="rail" aria-hidden="true"></i>
+  <article class="entry" data-field="site">
+    <div class="when"><span class="d">11.11</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">회사·웹사이트</span><span class="prod">isaacbridge.com</span></div>
+      <h3>isaacbridge.com을 열었습니다.</h3>
+      <p class="sum">새 도메인에 리뉴얼한 사이트를 연결하고, 구글 검색에 사이트맵을 제출했습니다. 다리를 그린 A 로고도 이날 사이트 전체에 적용했습니다.</p>
+      <figure class="pic"><img src="media/og.jpg" alt="다크 배경 위 아이작브릿지 로고" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>Cloudflare에서 도메인과 HTTPS를 연결하고, www 주소는 isaacbridge.com으로 넘깁니다.</li><li>홈과 제품 상세 페이지 10개를 사이트맵에 담아 구글 서치 콘솔에 제출했습니다.</li><li>머리글, 푸터, 탭 아이콘과 공유 이미지를 새 로고로 바꿨습니다.</li></ul></details>
+    </div>
+  </article>
+  <article class="entry" data-field="gateway">
+    <div class="when"><span class="d">11.11</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">게이트웨이</span><span class="prod">게이트웨이</span></div>
+      <h3>창밖 영상 봄 세트를 실었습니다.</h3>
+      <p class="sum">노선 20곳마다 그 지역의 봄 풍경을 낮과 밤 영상으로 만들어 게임에 등록했습니다. 3월부터 모든 손님의 버스 창밖이 봄으로 바뀝니다.</p>
+      <figure class="pic"><img src="media/log/gateway-spring-city.jpg" alt="벚꽃이 핀 도심 거리, 게이트웨이 창밖 봄 장면" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>서울 벚꽃길, 제주 유채꽃, 대관령 양떼목장처럼 장소마다 지역의 특색을 담았습니다.</li><li>컴퓨터용 40개와 휴대폰용 40개의 반복 영상을 따로 만들어 등록했습니다.</li><li>지금은 겨울 영상이 나오고, 주소에 ?season=spring을 붙이면 미리 볼 수 있습니다.</li></ul></details>
+      <a class="go" href="work/gateway.html">제품 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="site">
+    <div class="when"><span class="d">11.10</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">회사·웹사이트</span><span class="prod">홈페이지 리뉴얼</span></div>
+      <h3>홈페이지를 다시 그렸습니다.</h3>
+      <p class="sum">타이포그래피가 주인공인 새 홈을 만들고, 히어로를 힉스필드로 만든 3D 모션그래픽 루프로 채웠습니다. 제품 10개는 각자의 상세 페이지를 갖게 됐습니다.</p>
+      <figure class="pic"><img src="media/hero-poster.webp" alt="노랑 별과 캡슐이 맞물린 3D 모션그래픽 장면" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>레퍼런스에서는 구도와 색만 가져오고, 소재는 소프트웨어를 만드는 일로 바꿨습니다.</li><li>제품 상세 페이지는 조사한 근거 파일에서 한 번에 만들어집니다.</li><li>페이지의 모든 움직임은 둥근 버튼 하나로 멈출 수 있습니다.</li></ul></details>
+    </div>
+  </article>
+  <article class="entry" data-field="gateway">
+    <div class="when"><span class="d">11.09</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">게이트웨이</span><span class="prod">게이트웨이</span></div>
+      <h3>창밖에 비와 눈을 내렸습니다.</h3>
+      <p class="sum">비 다섯 가지와 눈 세 가지를 만들고, 버스 유리창에 부딪혀 맺히는 빗방울과 눈송이까지 그렸습니다.</p>
+      <figure class="pic"><img src="media/log/gateway-snow.jpg" alt="함박눈이 내리는 강변, 게이트웨이 버스 창밖" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>이슬비부터 장대비와 태풍까지, 종류마다 빗줄기의 크기와 빠르기가 다릅니다.</li><li>밤에는 젖은 길에 버스 안의 따뜻한 빛이 번집니다.</li><li>같은 날 게임은 4개 언어, 랜딩페이지는 11개 언어로 번역했습니다.</li></ul></details>
+      <a class="go" href="work/gateway.html">제품 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="gateway">
+    <div class="when"><span class="d">11.08</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">게이트웨이</span><span class="prod">게이트웨이</span></div>
+      <h3>게이트웨이를 zen-gateway.com에 열었습니다.</h3>
+      <p class="sum">하루 전에 처음 만든 버스 게임에 랜딩페이지를 붙이고, 본 주소 zen-gateway.com에 연결했습니다.</p>
+      <figure class="pic"><img src="media/log/gateway-landing.jpg" alt="GATEWAY 게이트웨이 랜딩페이지 첫 화면" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>11월 7일 하루 동안 버스 안, 같이 타기, 터미널과 승차, 유튜브 라디오와 마일리지를 만들었습니다.</li><li>zen-gateway.com은 랜딩페이지, /play/는 게임입니다.</li><li>같은 날 게임의 데이터 저장을 수파베이스로 옮겼습니다.</li></ul></details>
+      <a class="go" href="work/gateway.html">제품 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="site">
+    <div class="when"><span class="d">11.03</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">회사·웹사이트</span><span class="prod">웹사이트 엔지니어링</span></div>
+      <h3>한글 폰트는 필요한 글자만 보냅니다.</h3>
+      <p class="sum">2,057,688바이트짜리 원본 글꼴을 통째로 보내지 않고, 빌드한 페이지에 실제로 쓰인 글자만 모은 서브셋을 만들었습니다.</p>
+      <figure class="pic type" aria-hidden="true"><span>가</span></figure>
+      <details><summary>자세히</summary><ul><li>본문, 제목, 접근성 라벨과 입력 안내에 쓰인 글자를 빌드할 때 모읍니다.</li><li>기록된 본문 서브셋은 49 KB에서 가벼운 제목 굵기를 더하며 65 KB가 됐습니다.</li><li>글꼴 하나가 여러 조각 파일로 나뉘던 방식을 미리 받는 파일 하나로 바꿨습니다.</li></ul></details>
+    </div>
+  </article>
+  <article class="entry" data-field="o2o">
+    <div class="when"><span class="d">10.31</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">O2O 플랫폼</span><span class="prod">Picklebally</span></div>
+      <h3>Picklebally 1.0.0을 App Store에 냈습니다.</h3>
+      <p class="sum">호치민의 피클볼 코트를 찾고 예약하는 앱을 영어, 한국어, 베트남어로 출시했습니다.</p>
+      <figure class="pic type" aria-hidden="true"><span>1.0</span></figure>
+      <details><summary>자세히</summary><ul><li>VietQR로 결제하면 운영자가 확인하고 QR 티켓이 나옵니다.</li><li>오픈 세션과 ELO 랭킹, 리더보드로 함께 칠 사람을 찾습니다.</li><li>코트 운영자를 위한 운영자 모드가 같은 앱에 들어 있습니다.</li></ul></details>
+      <a class="go" href="work/picklebally.html">제품 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="o2o">
+    <div class="when"><span class="d">10.30</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">O2O 플랫폼</span><span class="prod">라미 AI</span></div>
+      <h3>라미 AI의 9개 언어 랜딩을 완성했습니다.</h3>
+      <p class="sum">식당과 카페를 위한 샵 에이전트 라미의 글로벌 랜딩페이지와 휴대폰 주문 체험을 마무리했습니다.</p>
+      <figure class="pic phone"><img src="media/rami/02-guest-order-chat.png" alt="라미와 대화하며 주문을 확인하는 손님 화면" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>손님은 테이블 QR로 들어와 자기 언어로 메뉴를 보고 라미와 대화하며 주문합니다.</li><li>다음 날 한국어, 영어, 베트남어로 보는 플랫폼 관리자 데모를 더했습니다.</li><li>AI 답변은 준비된 시나리오로 보여 주는 데모 단계입니다.</li></ul></details>
+      <a class="go" href="work/rami.html">제품 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="site">
+    <div class="when"><span class="d">10.16</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">회사·웹사이트</span><span class="prod">주식회사 아이작브릿지</span></div>
+      <h3>주식회사 아이작브릿지를 시작했습니다.</h3>
+      <p class="sum">인천 연수구에서 응용 소프트웨어와 시스템 소프트웨어 개발 및 공급업으로 문을 열었습니다.</p>
+      <figure class="pic"><img src="media/brand/isaacbridge-icon.svg" alt="아이작브릿지 아이콘" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>사업자등록증의 개업일은 2026년 10월 16일입니다.</li><li>업태는 정보통신업입니다.</li></ul></details>
+      <a class="go" href="company.html">회사소개 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="ai">
+    <div class="when"><span class="d">10.12</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">AI·생활 앱</span><span class="prod">ONE AI</span></div>
+      <h3>ONE AI에 회원 인증 AI를 연결했습니다.</h3>
+      <p class="sum">운영 도메인에서 회원 확인을 거친 대화, 파일 분석, 웹 검색, 이미지 생성과 편집이 서버를 거쳐 동작하게 했습니다.</p>
+      <figure class="pic phone"><img src="media/one-ai/02-mobile-request-ko.png" alt="ONE AI 휴대폰 요청 입력 화면" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>답변은 실시간으로 흘러나오고, 출처와 만든 파일이 함께 표시됩니다.</li><li>AI 키는 서버에만 두고 브라우저로는 보내지 않습니다.</li><li>휴대폰에서는 키보드가 올라와도 입력창이 화면에 남도록 다듬었습니다.</li></ul></details>
+      <a class="go" href="work/one-ai.html">제품 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="ai">
+    <div class="when"><span class="d">10.02</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">AI·생활 앱</span><span class="prod">MOA</span></div>
+      <h3>MOA 1.1.0이 App Store에 올라갔습니다.</h3>
+      <p class="sum">일정과 할 일, 자금과 루틴을 한 앱에 모은 MOA의 iOS 1.1.0을 출시했습니다.</p>
+      <figure class="pic phone"><img src="media/moa/calendar-ko.webp" alt="MOA 캘린더 화면" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>가입 없이 기기에 먼저 저장하고, 원하면 iCloud로 동기화합니다.</li><li>여러 통화를 지원하는 자금 기록과 알람, 루틴을 한곳에서 씁니다.</li></ul></details>
+      <a class="go" href="work/moa.html">제품 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="content">
+    <div class="when"><span class="d">09.10</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">콘텐츠·미디어</span><span class="prod">SceneDeal</span></div>
+      <h3>SceneDeal에 회원 문의센터를 열었습니다.</h3>
+      <p class="sum">메일 링크로 받던 문의를 사이트 안 문의센터로 옮기고, 관리자 답변과 처리 상태를 한곳에서 관리하게 했습니다.</p>
+      <figure class="pic"><img src="media/scenedeal/01-home-ko.png" alt="SceneDeal 마켓플레이스 홈 화면" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>문의 유형 7가지와 화면 언어 4가지(한국어, 영어, 베트남어, 중국어 간체)를 지원합니다.</li><li>회원은 자기 문의와 대화만 보고, 답변에 이어서 질문할 수 있습니다.</li><li>닷새 뒤에는 텔레그램 고객지원 릴레이도 배포했습니다.</li></ul></details>
+      <a class="go" href="work/scenedeal.html">제품 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="o2o">
+    <div class="when"><span class="d">09.02</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">O2O 플랫폼</span><span class="prod">파티야</span></div>
+      <h3>파티야의 핵심 흐름을 완성했습니다.</h3>
+      <p class="sum">릴스로 모임을 발견하고, 한 번에 참여하고, 채팅하고, 후기를 남기는 흐름이 iOS와 Android 개발 빌드에서 동작합니다.</p>
+      <figure class="pic phone"><img src="media/partya/02-gathering.jpg" alt="파티야 모임 상세 화면" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>실시간 채팅에 번역과 사진·영상 보내기가 들어갔습니다.</li><li>푸시 알림 서버가 돌아가고 있습니다.</li><li>다음 단계는 스토어 출시를 위한 계정과 인앱결제입니다.</li></ul></details>
+      <a class="go" href="work/partya.html">제품 보기 →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="erp">
+    <div class="when"><span class="d">8월</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">ERP·업무 시스템</span><span class="prod">MARBL Works</span></div>
+      <h3>MARBL Works를 백엔드에 넘길 준비를 마쳤습니다.</h3>
+      <p class="sum">검증한 프로토타입을 판매·영업, 생산, 거래처 주문, 배송기사의 4개 앱으로 나누고, 백엔드팀이 이어받을 수 있게 저장 방식과 인계 문서를 정리했습니다.</p>
+      <figure class="pic"><img src="media/marbl-works/03-weighing-ko.png" alt="MARBL Works 계량 화면" loading="lazy"></figure>
+      <details><summary>자세히</summary><ul><li>4개 앱이 같은 데이터를 써서, 거래처 앱의 주문이 판매·영업 화면에 바로 반영됩니다.</li><li>거래처 앱과 기사 앱은 한국어, 베트남어, 영어로 씁니다.</li><li>납품서와 거래명세서 같은 인쇄 문서도 앱과 같은 글꼴 체계로 맞췄습니다.</li></ul></details>
+      <a class="go" href="work/marbl-works.html">제품 보기 →</a>
+    </div>
+  </article>
+</div></section>
+
+<section class="lcta"><div class="wrap"><div class="box">
+  <div><h2>프로젝트 문의를 기다립니다.</h2><p>개선할 업무와 지금의 상황을 알려 주시면, 필요한 소프트웨어와 첫 단계를 함께 정리합니다.</p></div>
+  <a class="btn" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>프로젝트 문의하기</a>
+</div></div></section>
+</main>
+
+<footer><div class="wrap">
+  <div><a class="logo" href="index.html"><img src="media/brand/isaacbridge-horizontal-white.svg" alt="아이작브릿지 ISAAC BRIDGE"></a><div class="line">실제 업무에 맞춰 만드는 소프트웨어.</div></div>
+  <dl><dt>상호</dt><dd>주식회사 아이작브릿지</dd><dt>대표자</dt><dd>이지영</dd><dt>사업자등록번호</dt><dd>296-87-04307</dd><dt>사업장 주소</dt><dd>인천광역시 연수구 하모니로178번길 22, 7층 707-차67호</dd></dl>
+  <div class="copy"><span>© 주식회사 아이작브릿지</span><span>개인정보 처리방침</span></div>
+</div></footer>
+<button class="pause" data-pause="움직임 일시정지" data-play="움직임 재생" aria-label="움직임 일시정지">II</button>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/site.js"></script>
+<script>
+if (window.gsap && window.Site) {
+  const S = window.Site;
+  S.riseIn(document.querySelector('.lhero h1'));
+  S.blurIn(document.querySelector('.lhero .lead'));
+  S.liftIn([...document.querySelectorAll('.filters button')], { y: 18, stagger: .05 });
+
+  // the timeline line draws with the scroll
+  gsap.fromTo('.tl .rail', { scaleY: 0 }, { scaleY: 1, ease: 'none',
+    scrollTrigger: { trigger: '.tl', start: 'top 70%', end: 'bottom 75%', scrub: .4 } });
+
+  const entries = [...document.querySelectorAll('.entry')];
+  entries.forEach(e => {
+    const d = e.querySelector('.d'), card = e.querySelector('.card'), img = e.querySelector('.pic img');
+    d.classList.add('mask');
+    gsap.timeline({ scrollTrigger: S.once(e, 'top 84%') })
+      .from(e.querySelector('.dot'), { scale: 0, duration: .5, ease: 'back.out(3)' })
+      .from(S.split(d).chars, { yPercent: 110, duration: .7, stagger: .05, ease: 'expo.out' }, 0)          // the date rolls in
+      .from(e.querySelector('.y'), { opacity: 0, y: 8, duration: .5 }, .2)
+      .fromTo(card, { clipPath: 'inset(0% 0% 100% 0% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1, ease: 'expo.inOut', clearProps: 'clipPath' }, .05)
+      .from(card.querySelectorAll('.meta, h3, .sum, details, .go'), { opacity: 0, y: 18, duration: .6, stagger: .06, ease: 'power3.out' }, .4);
+    if (img) gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: 'none',
+      scrollTrigger: { trigger: e, start: 'top bottom', end: 'bottom top', scrub: .5 } });
+    // opening the details slides the list down
+    const det = e.querySelector('details');
+    det.addEventListener('toggle', () => { if (det.open) gsap.from(det.querySelector('ul'), { height: 0, opacity: 0, duration: .5, ease: 'expo.out', clearProps: 'height' }); });
+  });
+
+  // filter: leaving entries fade, the rest glide to their new places, new ones rise in (FLIP by hand)
+  const pills = [...document.querySelectorAll('.filters button')];
+  let busy = false;
+  pills.forEach(b => b.addEventListener('click', () => {
+    if (busy || b.getAttribute('aria-pressed') === 'true') return;
+    busy = true;
+    pills.forEach(p => p.setAttribute('aria-pressed', String(p === b)));
+    const f = b.dataset.filter, show = e => f === 'all' || e.dataset.field === f;
+    const before = new Map(entries.filter(e => !e.hidden).map(e => [e, e.getBoundingClientRect().top]));
+    const leaving = entries.filter(e => !e.hidden && !show(e));
+    const swap = () => {
+      entries.forEach(e => { e.hidden = !show(e); });
+      entries.filter(e => !e.hidden).forEach(e => {
+        if (before.has(e)) gsap.fromTo(e, { y: before.get(e) - e.getBoundingClientRect().top }, { y: 0, duration: .7, ease: 'expo.out' });
+        else gsap.fromTo(e, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .6, ease: 'expo.out' });
+        gsap.set(e.querySelector('.card'), { clearProps: 'clipPath' });
+      });
+      gsap.set(leaving, { opacity: 1, scale: 1 });
+      ScrollTrigger.refresh();
+      busy = false;
+    };
+    leaving.length ? gsap.to(leaving, { opacity: 0, scale: .97, duration: .25, ease: 'power2.in', onComplete: swap }) : swap();
+  }));
+
+  S.riseIn(document.querySelector('.lcta h2'));
+  S.magnetic(document.querySelector('.lcta .btn'));
+}
+</script>
+</body>
+</html>

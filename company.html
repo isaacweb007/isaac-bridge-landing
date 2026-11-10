@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>회사소개 · 아이작브릿지</title>
+<meta name="description" content="아이작브릿지는 아이디어를 실제로 쓰이는 소프트웨어로 만드는 크리에이티브 개발자 집단입니다. ERP와 업무 시스템부터 O2O, 콘텐츠, AI 서비스까지 기획에서 운영까지 한 팀이 끝까지 만듭니다.">
+<link rel="canonical" href="https://isaacbridge.com/company">
+<meta property="og:type" content="website"><meta property="og:site_name" content="아이작브릿지"><meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="회사소개 · 아이작브릿지"><meta property="og:description" content="아이디어를 실제로 쓰이는 소프트웨어로 만드는 크리에이티브 개발자 집단, 아이작브릿지를 소개합니다.">
+<meta property="og:url" content="https://isaacbridge.com/company"><meta property="og:image" content="https://isaacbridge.com/media/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="media/brand/isaacbridge-icon.svg" type="image/svg+xml"><link rel="icon" href="media/brand/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="media/brand/apple-touch-icon.png">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<link href="assets/site.css" rel="stylesheet">
+<style>
+/* ---------- hero: a promise in type, real screens floating beside it ---------- */
+.hero{padding:72px 0 120px;overflow:hidden}
+.hero h1{margin-top:22px;font-size:clamp(52px,7.6vw,116px);font-weight:900;letter-spacing:-.068em;line-height:1.02}
+.rot{display:inline-grid;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;
+  background:linear-gradient(var(--y),var(--y)) 0 90%/100% .2em no-repeat}
+.rot>span{grid-area:1/1}.rot>span+span{opacity:0}
+.hero-row{margin-top:56px;display:grid;grid-template-columns:1fr 560px;gap:48px;align-items:center}
+.hero .sub{font-size:21px;line-height:1.65;color:var(--muted);font-weight:500;max-width:25em}
+.ctas{margin-top:36px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.collage{position:relative;height:440px}
+.collage img{position:absolute;box-shadow:0 30px 60px rgba(30,31,29,.2);will-change:transform}
+.collage .c1{left:0;top:40px;width:430px;border-radius:12px;transform:rotate(-5deg)}
+.collage .c2{right:96px;top:110px;width:150px;border-radius:24px;transform:rotate(4deg)}
+.collage .c3{right:0;top:0;width:150px;border-radius:24px;transform:rotate(-3deg)}
+
+/* ---------- creative developers: dark, sticky word on the left ---------- */
+.crew{background:var(--ink);color:#fff;padding:150px 0}
+.crew .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:80px;align-items:start}
+.crew .big{position:sticky;top:120px}
+.crew .big b{display:block;font-size:clamp(48px,6.4vw,100px);font-weight:900;letter-spacing:-.05em;line-height:.92;color:var(--y)}
+.crew .big>span{display:block;margin-top:22px;font-size:20px;font-weight:700;color:#d6d9d4}
+.crew .state{font-size:clamp(26px,2.6vw,38px);font-weight:800;letter-spacing:-.045em;line-height:1.38}
+.traits{margin-top:64px;list-style:none;display:grid}
+.traits li{display:grid;grid-template-columns:72px 1fr;gap:4px 16px;padding:30px 0;border-top:1px solid #3a3c38}
+.traits b{grid-row:span 2;font-size:40px;font-weight:900;letter-spacing:-.06em;color:var(--y);line-height:1}
+.traits h3{font-size:24px;font-weight:800;letter-spacing:-.04em}
+.traits p{font-size:17px;line-height:1.7;color:#b9bdb7}
+
+/* ---------- ERP spotlight: a collage card and a type card ---------- */
+.erp{padding:160px 0 120px}
+.erp-grid{margin-top:64px;display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.erp .card{position:relative;border-radius:28px;overflow:hidden;padding:40px;min-height:600px;display:flex;flex-direction:column}
+.erp .card .tag{font-size:14px;font-weight:600;color:var(--muted)}
+.erp .card h3{margin-top:12px;font-size:56px;font-weight:900;letter-spacing:-.05em;line-height:1}
+.erp .card p{margin-top:14px;font-size:20px;font-weight:700;letter-spacing:-.03em;line-height:1.45;max-width:20em}
+.erp .card .go{margin-top:20px;font-weight:700;font-size:15px;border-bottom:2px solid currentColor;align-self:flex-start}
+.erp .marbl{grid-column:span 8;background:var(--card)}
+.erp .marbl .pile{position:absolute;left:40px;right:0;bottom:0;height:330px}
+.erp .marbl .pile img{position:absolute;box-shadow:0 26px 54px rgba(30,31,29,.22);will-change:transform}
+.pile .p1{left:0;top:30px;width:62%;border-radius:12px}
+.pile .p2{left:30%;top:0;width:58%;border-radius:12px}
+.pile .p3{right:40px;top:-40px;width:150px;border-radius:24px}
+.erp .moabi{grid-column:span 4;background:var(--y)}
+.erp .moabi .tag{color:#5a4700}
+.erp .moabi .type{margin-top:auto;font-size:112px;font-weight:900;letter-spacing:-.07em;line-height:.86}
+
+/* ---------- range: a pinned horizontal wall of the other fields ---------- */
+.range{padding:40px 0 0}
+.range .head{padding-bottom:56px}
+.wall{overflow:hidden}
+.track{display:flex;gap:20px;padding:0 48px 120px;width:max-content}
+.tile{position:relative;flex:none;width:400px;height:560px;border-radius:28px;overflow:hidden;padding:32px;display:flex;flex-direction:column;background:var(--card)}
+.tile .tag{font-size:13px;font-weight:600;color:var(--muted)}
+.tile h3{margin-top:10px;font-size:42px;font-weight:900;letter-spacing:-.05em;line-height:1}
+.tile p{margin-top:10px;font-size:18px;font-weight:700;letter-spacing:-.03em;line-height:1.4}
+.tile img{position:absolute;box-shadow:0 26px 50px rgba(30,31,29,.2)}
+.tile .ph{width:180px;left:50%;margin-left:-90px;top:220px;border-radius:24px}
+.tile .ph.two{margin-left:-150px}.tile .ph.two+.ph{margin-left:-10px;top:250px;transform:rotate(5deg)}
+.tile .dk{left:32px;width:560px;top:230px;border-radius:12px}
+.tile.dark{background:var(--ink);color:#fff}.tile.dark .tag{color:#b5b9b3}
+.tile.yellow{background:var(--y)}.tile.yellow .tag{color:#5a4700}
+.tile.grey{background:#E3E7E4}
+.tile .type{margin-top:auto;font-size:104px;font-weight:900;letter-spacing:-.07em;line-height:.86}
+.tile.dark .type{color:var(--y)}
+.tile .more{position:absolute;right:24px;top:24px;width:44px;height:44px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center}
+
+/* ---------- how we work: cards that stack as you scroll ---------- */
+.how{padding:150px 0 90px}
+.stack{margin-top:64px;display:grid;gap:24px}
+.sheet{position:sticky;top:110px;border-radius:32px;padding:56px;min-height:380px;display:grid;grid-template-columns:200px 1fr;gap:40px;transform-origin:50% 0;will-change:transform}
+.sheet:nth-child(1){background:var(--card)}.sheet:nth-child(2){background:#E3E7E4;top:134px}.sheet:nth-child(3){background:var(--y);top:158px}
+.sheet .n{font-size:120px;font-weight:900;letter-spacing:-.07em;line-height:.85;color:transparent;-webkit-text-stroke:2px var(--ink)}
+.sheet h3{font-size:clamp(32px,3.6vw,52px);font-weight:900;letter-spacing:-.05em;line-height:1.08}
+.sheet p{margin-top:16px;font-size:19px;line-height:1.7;max-width:30em;color:#3d403b}
+.sheet .chips{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px}
+.sheet .chips span{height:40px;padding:0 16px;border-radius:999px;border:1.5px solid var(--ink);display:inline-flex;align-items:center;font-weight:700;font-size:14px}
+
+/* ---------- company facts ---------- */
+.facts{padding:120px 0 150px}
+.facts .wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:start}
+.facts .map{display:inline-block;margin-top:28px}
+.facts dl{display:grid}
+.facts .row{--ln:1;position:relative;display:grid;grid-template-columns:180px 1fr;gap:24px;padding:24px 0}
+.facts .row::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line);transform-origin:left;transform:scaleX(var(--ln))}
+.facts .row:first-child::before{height:1.5px;background:var(--ink)}
+.facts dt{font-size:15px;font-weight:600;color:var(--muted)}
+.facts dd{font-size:20px;font-weight:700;letter-spacing:-.03em;line-height:1.5}
+
+/* ---------- closing ---------- */
+.cta{padding:0 0 150px}
+.cta .block{border-radius:32px;background:var(--y);padding:110px 64px;position:relative;overflow:hidden}
+.cta h2{font-size:clamp(48px,6.6vw,104px);letter-spacing:-.07em;line-height:1.02;max-width:11em}
+.cta p{margin-top:28px;font-size:19px;line-height:1.7;color:#4a3a00;max-width:30em}
+.cta .btn{margin-top:40px}
+
+@media (max-width:767px){
+  .hero{padding:40px 0 80px}.hero h1{font-size:44px}
+  .hero-row{grid-template-columns:1fr;gap:40px;margin-top:32px}.hero .sub{font-size:17px}
+  .collage{height:300px}.collage .c1{width:300px;top:30px}.collage .c2{width:104px;right:60px;top:90px}.collage .c3{width:104px}
+  .crew{padding:90px 0}.crew .wrap{grid-template-columns:1fr;gap:40px}.crew .big{position:static}.crew .state{font-size:24px}
+  .traits{margin-top:36px}.traits li{grid-template-columns:52px 1fr}.traits b{font-size:30px}.traits h3{font-size:20px}.traits p{font-size:16px}
+  .erp{padding:100px 0 80px}.erp-grid{grid-template-columns:1fr;gap:14px;margin-top:36px}
+  .erp .card{grid-column:auto!important;padding:26px;min-height:520px}.erp .card h3{font-size:40px}.erp .card p{font-size:17px}
+  .erp .marbl .pile{left:26px;height:280px}.pile .p3{width:110px;right:20px}
+  .erp .moabi{min-height:380px}.erp .moabi .type{font-size:88px}
+  .range .head{padding-bottom:32px}
+  .wall{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .track{padding:0 20px 80px;gap:12px}.tile{width:300px;height:460px;padding:24px;scroll-snap-align:start}
+  .tile h3{font-size:34px}.tile p{font-size:16px}.tile .ph{width:136px;margin-left:-68px;top:190px}.tile .ph.two{margin-left:-118px}
+  .tile .dk{width:420px;left:24px;top:200px}.tile .type{font-size:84px}
+  .how{padding:90px 0 60px}.stack{margin-top:36px}
+  .sheet{grid-template-columns:1fr;gap:10px;padding:32px 26px;min-height:0;top:84px}.sheet:nth-child(2){top:96px}.sheet:nth-child(3){top:108px}
+  .sheet .n{font-size:72px}.sheet h3{font-size:30px}.sheet p{font-size:16px}
+  .facts{padding:80px 0 100px}.facts .wrap{grid-template-columns:1fr;gap:32px}.facts .row{grid-template-columns:1fr;gap:4px;padding:18px 0}.facts dd{font-size:17px}
+  .cta{padding:0 0 90px}.cta .block{padding:60px 26px;border-radius:24px}.cta h2{font-size:42px}.cta p{font-size:16px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="st" viewBox="-12 -12 24 24"><path d="M0 -11C2.5 -4.1 4.1 -2.5 11 0C4.1 2.5 2.5 4.1 0 11C-2.5 4.1 -4.1 2.5 -11 0C-4.1 -2.5 -2.5 -4.1 0 -11Z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="index.html"><img src="media/brand/isaacbridge-horizontal.svg" alt="아이작브릿지 ISAAC BRIDGE"></a>
+  <div class="links"><a href="index.html#work">프로젝트</a><a href="index.html#fields">사업분야</a><a href="company.html" aria-current="page">회사소개</a><a href="log.html">작업 일지</a></div>
+  <div class="nr"><a class="lang lang-wide" href="en/company.html" hreflang="en"><b>KO</b> <span>/</span> EN</a><a class="btn sm" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>프로젝트 문의하기</a></div>
+</div></nav>
+
+<main>
+<header class="hero"><div class="wrap">
+  <p class="eyebrow">ABOUT ISAAC BRIDGE</p>
+  <h1 id="title">우리는<br><span class="rot"><span>ERP를</span><span>앱을</span><span>플랫폼을</span><span>AI 서비스를</span></span><br>끝까지 잘 만듭니다.</h1>
+  <div class="hero-row">
+    <div>
+      <p class="sub">아이디어를 실제로 쓰이는 소프트웨어로 만드는 크리에이티브 개발자 집단입니다. 기획부터 운영까지 한 팀이 끝까지 맡습니다.</p>
+      <div class="ctas"><a class="btn" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>프로젝트 문의하기</a><a class="tlink" href="index.html#work">만든 프로젝트 보기 →</a></div>
+    </div>
+    <div class="collage" aria-hidden="true">
+      <img class="c1" src="media/marbl-works/01-dashboard-ko.png" alt="">
+      <img class="c2" src="media/rami/01-guest-menu.png" alt="">
+      <img class="c3" src="media/partya/01-feed.jpg" alt="">
+    </div>
+  </div>
+</div></header>
+
+<section class="crew"><div class="wrap">
+  <div class="big"><b id="crewWord">CREATIVE<br>DEVELOPERS</b><span>크리에이티브 개발자 집단</span></div>
+  <div>
+    <p class="state" id="crewState">화면을 그리는 사람과 코드를 쓰는 사람이 따로 움직이지 않습니다. 아이작브릿지의 개발자는 기획을 읽고, 디자인을 고민하고, 출시 뒤의 운영까지 생각합니다.</p>
+    <ul class="traits">
+      <li><b>01</b><h3>기획을 읽는 개발자</h3><p>누가 어떤 일을 해야 하는지부터 이해하고, 이번에 만들 범위를 함께 정합니다.</p></li>
+      <li><b>02</b><h3>디자인을 고민하는 개발자</h3><p>사용자가 다음 행동을 바로 알 수 있도록 흐름과 문구, 움직임까지 다듬습니다.</p></li>
+      <li><b>03</b><h3>운영까지 보는 개발자</h3><p>출시한 뒤에도 이어서 고칠 수 있도록 소스와 문서, 배포 절차를 남깁니다.</p></li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="erp"><div class="wrap">
+  <h2 id="erpTitle">ERP는 저희가 가장 깊이<br>파고드는 분야입니다.</h2>
+  <p class="lead" id="erpLead">주문, 생산, 재고, 출고, 정산처럼 회사가 매일 반복하는 일을 하나의 데이터로 잇습니다. 현장의 흐름을 먼저 배우고 시스템을 짓습니다.</p>
+  <div class="erp-grid">
+    <a class="card marbl" href="work/marbl-works.html">
+      <span class="tag">ERP·업무 시스템 · 육가공 B2B</span>
+      <h3>MARBL Works</h3>
+      <p>원육 입고부터 작업지시, 재고, 출고, 정산까지 하나의 데이터로.</p>
+      <span class="go">프로젝트 자세히 보기</span>
+      <div class="pile" aria-hidden="true">
+        <img class="p1" src="media/company/marbl-delivery.webp" alt="">
+        <img class="p2" src="media/company/marbl-books.webp" alt="">
+        <img class="p3" src="media/company/marbl-client-phone.webp" alt="">
+      </div>
+    </a>
+    <a class="card moabi" href="work/moabi.html">
+      <span class="tag">ERP·업무 시스템 · 인트라넷</span>
+      <h3>Moabi</h3>
+      <p>베트남에서 일하는 회사의 지시, 보고, 결재, 근태, 급여, 장부를 한 곳에서. 주고받는 말은 자동 번역됩니다.</p>
+      <span class="go">프로젝트 자세히 보기</span>
+      <div class="type" aria-hidden="true">KO<br>→VI</div>
+    </a>
+  </div>
+</div></section>
+
+<section class="range">
+  <div class="wrap head">
+    <h2 id="rangeTitle">그리고 다양한 분야에서.</h2>
+    <p class="lead" id="rangeLead">가게와 모임, 콘텐츠와 AI, 쉬어 가는 공간까지. 분야가 달라도 만드는 기준은 같습니다.</p>
+  </div>
+  <div class="wall" id="wall"><div class="track" id="track">
+    <a class="tile grey" href="work/rami.html"><span class="tag">O2O 플랫폼</span><h3>라미 AI</h3><p>말이 통하는 우리 샵, 라미</p>
+      <img class="ph two" src="media/rami/01-guest-menu.png" alt="라미 AI 손님 메뉴 화면"><img class="ph" src="media/rami/03-owner-approval.png" alt="라미 AI 사장님 주문 승인 화면"><span class="more" aria-hidden="true">→</span></a>
+    <a class="tile" href="work/partya.html"><span class="tag">O2O 플랫폼</span><h3>파티야</h3><p>릴스로 발견하고 탭 한 번으로 참여</p>
+      <img class="ph two" src="media/partya/01-feed.jpg" alt="파티야 릴스 피드 화면"><img class="ph" src="media/partya/02-gathering.jpg" alt="파티야 모임 상세 화면"><span class="more" aria-hidden="true">→</span></a>
+    <a class="tile dark" href="work/picklebally.html"><span class="tag">O2O 플랫폼</span><h3>Picklebally</h3><p>호치민 피클볼 코트 예약과 경기 매칭</p>
+      <div class="type" aria-hidden="true">Book.<br>Play.</div><span class="more" aria-hidden="true">→</span></a>
+    <a class="tile" href="work/scenedeal.html"><span class="tag">콘텐츠·미디어</span><h3>SceneDeal</h3><p>콘텐츠 제작사와 구매자를 잇는 B2B 거래 플랫폼</p>
+      <img class="dk" src="media/scenedeal/01-home-ko.png" alt="SceneDeal 마켓플레이스 홈 화면"><span class="more" aria-hidden="true">→</span></a>
+    <a class="tile yellow" href="work/shortdrama.html"><span class="tag">콘텐츠·미디어</span><h3>숏드라마 스트리밍</h3><p>텔레그램 안에서 바로 보는 세로형 드라마</p>
+      <div class="type" aria-hidden="true">9:16</div><span class="more" aria-hidden="true">→</span></a>
+    <a class="tile grey" href="work/one-ai.html"><span class="tag">AI·생활 앱</span><h3>ONE AI</h3><p>대화에서, 이어서 쓸 수 있는 작업물로.</p>
+      <img class="ph" src="media/one-ai/01-mobile-home-ko.png" alt="ONE AI 모바일 홈 화면"><span class="more" aria-hidden="true">→</span></a>
+    <a class="tile" href="work/moa.html"><span class="tag">AI·생활 앱</span><h3>MOA</h3><p>오늘의 일을, 한곳에서 이어가도록.</p>
+      <img class="ph two" src="media/moa/today-ko.webp" alt="MOA 오늘 화면"><img class="ph" src="media/moa/ledger-ko.webp" alt="MOA 가계부 화면"><span class="more" aria-hidden="true">→</span></a>
+    <a class="tile dark" href="work/gateway.html"><span class="tag">게이트웨이 · 개발 중</span><h3>게이트웨이</h3><p>목적지 없는 버스, 잠깐의 휴식</p>
+      <img class="dk" src="media/company/gateway-snow.webp" alt="게이트웨이 버스 창밖에 눈 내리는 화면"><span class="more" aria-hidden="true">→</span></a>
+  </div></div>
+</section>
+
+<section class="how"><div class="wrap">
+  <h2 id="howTitle">잘 만드는 방법은<br>정해져 있습니다.</h2>
+  <div class="stack">
+    <article class="sheet"><span class="n">01</span><div><h3>먼저 범위를 맞춥니다.</h3>
+      <p>필요한 화면과 데이터, 우선순위를 정리하고 이번 작업의 경계를 분명히 합니다. 할 일과 하지 않을 일을 나눠 같은 기대로 시작합니다.</p>
+      <div class="chips"><span>범위와 화면 목록</span><span>응용 소프트웨어</span><span>서버·연동 개발</span></div></div></article>
+    <article class="sheet"><span class="n">02</span><div><h3>보면서 확인합니다.</h3>
+      <p>설계와 동작을 단계별로 공유해, 문장으로만 설명하기 어려운 부분을 화면에서 함께 확인합니다.</p>
+      <div class="chips"><span>디자인 원본과 공통 스타일 값</span><span>테스트 기록</span></div></div></article>
+    <article class="sheet"><span class="n">03</span><div><h3>다음 담당자까지 생각합니다.</h3>
+      <p>소스와 운영 자료를 정리해, 누가 이어받아도 제품을 계속 관리할 수 있도록 전달합니다.</p>
+      <div class="chips"><span>소스와 저장소 권한</span><span>운영 문서</span><span>배포 절차</span></div></div></article>
+  </div>
+</div></section>
+
+<section class="facts"><div class="wrap">
+  <div><h2 id="factsTitle">회사 정보</h2>
+    <a class="tlink map" href="https://map.naver.com/p/search/%EC%9D%B8%EC%B2%9C%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%97%B0%EC%88%98%EA%B5%AC%20%ED%95%98%EB%AA%A8%EB%8B%88%EB%A1%9C178%EB%B2%88%EA%B8%B8%2022" rel="noopener">네이버 지도에서 보기 ↗</a></div>
+  <dl>
+    <div class="row"><dt>상호</dt><dd>주식회사 아이작브릿지</dd></div>
+    <div class="row"><dt>대표자</dt><dd>이지영</dd></div>
+    <div class="row"><dt>사업자등록번호</dt><dd>296-87-04307</dd></div>
+    <div class="row"><dt>개업일</dt><dd>2026년 10월 16일</dd></div>
+    <div class="row"><dt>업태</dt><dd>정보통신업</dd></div>
+    <div class="row"><dt>종목</dt><dd>응용 소프트웨어 개발 및 공급업, 시스템 소프트웨어 개발 및 공급업</dd></div>
+    <div class="row"><dt>사업장 주소</dt><dd>인천광역시 연수구 하모니로178번길 22, 7층 707-차67호</dd></div>
+  </dl>
+</div></section>
+
+<section class="cta"><div class="wrap"><div class="block">
+  <h2 id="ctaTitle">만들고 싶은 것이 있다면, 지금 이야기해 주세요.</h2>
+  <p id="ctaLead">개선할 업무와 지금의 상황을 알려 주시면, 필요한 소프트웨어와 첫 단계를 함께 정리합니다.</p>
+  <a class="btn" id="ctaBtn" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>프로젝트 문의하기</a>
+</div></div></section>
+</main>
+
+<footer><div class="wrap">
+  <div><a class="logo" href="index.html"><img src="media/brand/isaacbridge-horizontal-white.svg" alt="아이작브릿지 ISAAC BRIDGE"></a><div class="line">실제 업무에 맞춰 만드는 소프트웨어.</div></div>
+  <dl><dt>상호</dt><dd>주식회사 아이작브릿지</dd><dt>대표자</dt><dd>이지영</dd><dt>사업자등록번호</dt><dd>296-87-04307</dd><dt>사업장 주소</dt><dd>인천광역시 연수구 하모니로178번길 22, 7층 707-차67호</dd></dl>
+  <div class="copy"><span>© 주식회사 아이작브릿지</span><span>개인정보 처리방침</span></div>
+</div></footer>
+<button class="pause" data-pause="움직임 일시정지" data-play="움직임 재생" aria-label="움직임 일시정지">II</button>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="assets/site.js"></script>
+<script>
+if (window.gsap && window.Site) {
+  const S = Site, $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const desk = matchMedia('(min-width:768px)').matches;
+
+  // hero: the promise rises letter by letter; the object word keeps changing; real screens float in
+  gsap.from('.eyebrow', { opacity: 0, y: -10, duration: .6 });
+  S.riseIn($('#title'), { scrollTrigger: undefined, delay: .1 });
+  const words = $$('.rot > span');
+  gsap.set(words.slice(1), { opacity: 1, yPercent: 115 });
+  // swap to the next word every 2 s; delayedCall lives on the global timeline, so the pause button stops it too
+  let k = 0;
+  const swap = () => { const w = words[k], n = words[k = (k + 1) % words.length];
+    gsap.to(w, { yPercent: -115, duration: .55, ease: 'power3.inOut' });
+    gsap.fromTo(n, { yPercent: 115 }, { yPercent: 0, duration: .55, ease: 'power3.inOut' });
+    gsap.delayedCall(2.05, swap); };
+  gsap.delayedCall(2.6, swap);
+  S.blurIn($('.hero .sub'), { scrollTrigger: undefined, delay: .7 });
+  gsap.from('.hero .ctas > *', { opacity: 0, y: 18, scale: .92, duration: .7, ease: 'back.out(2.2)', stagger: .12, delay: 1.1 });
+  $$('.collage img').forEach((im, i) => {
+    gsap.from(im, { y: 160, opacity: 0, duration: 1.3, ease: 'expo.out', delay: .5 + i * .14 });
+    gsap.to(im, { y: '-=12', duration: 2 + i * .4, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.8 + i * .2 });
+  });
+
+  // creative developers: the big word rises, the statement clears, the traits lift in one by one
+  S.riseIn($('#crewWord'));
+  gsap.from('.crew .big > span', { opacity: 0, x: -20, duration: .8, ease: 'expo.out', scrollTrigger: S.once('.crew .big') });
+  S.blurIn($('#crewState'));
+  $$('.traits li').forEach(li => gsap.from(li, { opacity: 0, y: 40, duration: .9, ease: 'expo.out', scrollTrigger: S.once(li, 'top 88%') }));
+  $$('.traits b').forEach(b => gsap.from(b, { scale: .3, rotate: -20, duration: .8, ease: 'back.out(2.4)', scrollTrigger: S.once(b, 'top 88%') }));
+
+  // ERP: title and lead, cards clip open, the screens drift at different speeds
+  S.riseIn($('#erpTitle')); S.blurIn($('#erpLead'));
+  $$('.erp .card').forEach((c, i) => gsap.fromTo(c, { clipPath: 'inset(14% 8% 14% 8% round 28px)', y: 80, opacity: 0 },
+    { clipPath: 'inset(0% 0% 0% 0% round 28px)', y: 0, opacity: 1, duration: 1.2, ease: 'expo.out', delay: i * .12, clearProps: 'clipPath', scrollTrigger: S.once('.erp-grid', 'top 85%') }));
+  [['.pile .p1', 10], ['.pile .p2', 22], ['.pile .p3', 40]].forEach(([s, d]) =>
+    gsap.fromTo(s, { y: d }, { y: -d, ease: 'none', scrollTrigger: { trigger: '.erp .marbl', start: 'top bottom', end: 'bottom top', scrub: .6 } }));
+  gsap.from('.erp .moabi .type', { yPercent: 30, opacity: 0, duration: 1, ease: 'expo.out', scrollTrigger: S.once('.erp .moabi', 'top 75%') });
+
+  // range: the wall is pinned and scrolls sideways on desktop; on phones it is a native swipe row
+  S.riseIn($('#rangeTitle')); S.blurIn($('#rangeLead'));
+  const track = $('#track');
+  if (desk) {
+    const dist = () => track.scrollWidth - innerWidth;
+    gsap.to(track, { x: () => -dist(), ease: 'none',
+      scrollTrigger: { trigger: '#wall', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true } });
+  }
+  gsap.from('.tile', { opacity: 0, y: 70, rotate: 2, duration: 1, ease: 'expo.out', stagger: .07, scrollTrigger: S.once('#wall', 'top 80%') });
+
+  // how we work: each sheet settles back as the next one arrives on top of it
+  S.riseIn($('#howTitle'));
+  const sheets = $$('.sheet');
+  sheets.forEach((sh, i) => {
+    gsap.from(sh.querySelector('.n'), { yPercent: 60, opacity: 0, duration: .9, ease: 'expo.out', scrollTrigger: S.once(sh, 'top 80%') });
+    gsap.from(sh.querySelectorAll('.chips span'), { scale: .5, opacity: 0, duration: .6, ease: 'back.out(2)', stagger: .07, scrollTrigger: S.once(sh, 'top 70%') });
+    if (i < sheets.length - 1) gsap.to(sh, { scale: .94, opacity: .55, ease: 'none',
+      scrollTrigger: { trigger: sheets[i + 1], start: 'top bottom', end: 'top 30%', scrub: true } });
+  });
+
+  // facts: the lines draw across, the values clear
+  S.riseIn($('#factsTitle'));
+  $$('.facts .row').forEach(r => { gsap.from(r, { '--ln': 0, duration: 1.2, ease: 'expo.inOut', scrollTrigger: S.once(r, 'top 92%') });
+    gsap.from(r.children, { opacity: 0, y: 12, duration: .7, ease: 'power3.out', stagger: .08, scrollTrigger: S.once(r, 'top 90%') }); });
+
+  // closing: the block opens from the button, the type rises, the button is magnetic
+  gsap.fromTo('.cta .block', { clipPath: 'circle(0% at 15% 80%)' }, { clipPath: 'circle(150% at 15% 80%)', duration: 1.4, ease: 'expo.inOut', scrollTrigger: S.once('.cta .block', 'top 80%') });
+  S.riseIn($('#ctaTitle'), { delay: .4, scrollTrigger: S.once('.cta .block', 'top 80%') });
+  S.blurIn($('#ctaLead'));
+  gsap.from('#ctaBtn', { scale: .6, opacity: 0, duration: .8, ease: 'back.out(2)', scrollTrigger: S.once('#ctaBtn', 'top 95%') });
+  S.magnetic($('#ctaBtn'));
+  addEventListener('load', () => ScrollTrigger.refresh());
+}
+</script>
+</body>
+</html>

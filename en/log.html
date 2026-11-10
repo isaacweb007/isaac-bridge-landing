@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Build log · Isaac Bridge</title>
+<meta name="description" content="A dated record of what Isaac Bridge has actually built and shipped, covering ERP, O2O, content, AI, Gateway and this website.">
+<link rel="canonical" href="https://isaacbridge.com/en/log">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Isaac Bridge"><meta property="og:locale" content="en_US">
+<meta property="og:title" content="Build log · Isaac Bridge"><meta property="og:description" content="A dated record of what Isaac Bridge has actually built and shipped, covering ERP, O2O, content, AI, Gateway and this website.">
+<meta property="og:url" content="https://isaacbridge.com/en/log"><meta property="og:image" content="https://isaacbridge.com/media/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../media/brand/isaacbridge-icon.svg" type="image/svg+xml"><link rel="icon" href="../media/brand/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="../media/brand/apple-touch-icon.png">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<link href="../assets/site.css" rel="stylesheet">
+<style>
+/* ---------- work log ---------- */
+.lhero{padding:64px 0 24px}
+.lhero .lead{max-width:36em}
+.filters{position:sticky;top:12px;z-index:6;margin-top:44px;display:flex;flex-wrap:wrap;gap:6px;padding:6px;width:max-content;max-width:100%;
+  background:rgba(237,240,238,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:28px;box-shadow:0 10px 30px -18px rgba(30,31,29,.4)}
+.filters button{height:42px;padding:0 18px;border-radius:999px;border:1.5px solid transparent;background:transparent;font-weight:700;font-size:14px;cursor:pointer;
+  transition:background .3s,color .3s,border-color .3s}
+.filters button:hover{border-color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:#fff}
+
+.tl{position:relative;padding:64px 0 120px}
+.tl .rail{position:absolute;top:0;bottom:0;left:calc(48px + 180px + 32px - 1px);width:2px;background:var(--ink);transform-origin:top}
+.entry{display:grid;grid-template-columns:180px 64px 1fr;align-items:start;padding:28px 0}
+.entry[hidden]{display:none}
+.when{text-align:right;padding-top:18px}
+.when .d{display:block;font-size:52px;font-weight:900;letter-spacing:-.06em;line-height:1}
+.when .y{display:block;margin-top:6px;font:600 12px/1 ui-monospace,'SF Mono',Menlo,monospace;letter-spacing:.08em;color:var(--muted)}
+.dot{justify-self:center;margin-top:30px;width:16px;height:16px;border-radius:50%;background:var(--y);border:3px solid var(--ink);position:relative;z-index:1}
+.card{display:grid;grid-template-columns:1fr 300px;gap:28px;background:var(--card);border-radius:28px;padding:30px 30px 26px}
+.card .meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-size:13px;font-weight:700}
+.card .tag{padding:5px 12px;border-radius:999px;background:var(--y)}
+.card .prod{color:var(--muted)}
+.card h3{margin-top:14px;font-size:30px;font-weight:900;letter-spacing:-.05em;line-height:1.2}
+.card .sum{margin-top:12px;font-size:16px;line-height:1.75;color:var(--muted)}
+.card details{margin-top:16px}
+.card summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:700;font-size:14px;list-style:none}
+.card summary::-webkit-details-marker{display:none}
+.card summary::after{content:"+";width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-size:14px;line-height:1;transition:transform .4s var(--ease)}
+.card details[open] summary::after{transform:rotate(45deg)}
+.card ul{margin-top:12px;padding-left:18px;font-size:15px;line-height:1.75;color:var(--ink)}
+.card ul li+li{margin-top:4px}
+.card .go{display:inline-block;align-self:flex-start;margin-top:16px;font-weight:700;font-size:14px;border-bottom:2px solid var(--ink);padding-bottom:1px}
+.pic{grid-column:2;grid-row:1 / span 6;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--paper)}
+.pic img{position:absolute;inset:-10% 0;width:100%;height:120%;object-fit:cover;object-position:top}
+.pic.phone img{object-fit:contain;background:#E3E7E4}
+.pic.type{background:var(--ink);display:grid;place-items:center}
+.pic.type span{font-size:84px;font-weight:900;letter-spacing:-.07em;color:var(--y);line-height:1}
+
+.lcta{padding:40px 0 150px}
+.lcta .box{background:var(--y);border-radius:28px;padding:64px 56px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
+.lcta p{margin-top:16px;font-size:18px;line-height:1.7;max-width:28em}
+
+@media (max-width:767px){
+  .lhero{padding:40px 0 8px}
+  .filters{top:8px;margin-top:28px;border-radius:22px}
+  .filters button{height:38px;padding:0 13px;font-size:13px}
+  .tl{padding:40px 0 80px}
+  .tl .rail{left:calc(20px + 28px - 1px)}
+  .entry{grid-template-columns:56px 1fr;padding:18px 0}
+  .dot{grid-column:1;grid-row:1;margin-top:6px}
+  .when{grid-column:2;grid-row:1;text-align:left;padding:0;display:flex;align-items:baseline;gap:10px}
+  .when .d{font-size:36px}.when .y{margin:0}
+  .card{grid-column:2;grid-row:2;margin-top:12px;grid-template-columns:1fr;gap:0;padding:20px 20px 22px;border-radius:22px}
+  .pic{grid-column:1;grid-row:1;margin-bottom:18px}
+  .card h3{font-size:24px}.card .sum{font-size:15px}
+  .lcta{padding:20px 0 100px}.lcta .box{flex-direction:column;align-items:flex-start;padding:40px 24px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="st" viewBox="-12 -12 24 24"><path d="M0 -11C2.5 -4.1 4.1 -2.5 11 0C4.1 2.5 2.5 4.1 0 11C-2.5 4.1 -4.1 2.5 -11 0C-4.1 -2.5 -2.5 -4.1 0 -11Z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="index.html"><img src="../media/brand/isaacbridge-horizontal.svg" alt="Isaac Bridge"></a>
+  <div class="links"><a href="index.html#work">Work</a><a href="index.html#fields">Fields</a><a href="company.html">Company</a><a href="log.html" aria-current="page">Build log</a></div>
+  <div class="nr"><a class="lang lang-wide" href="../log.html" hreflang="ko">KO <span>/</span> <b>EN</b></a><a class="btn sm" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>Discuss your project</a></div>
+</div></nav>
+
+<main>
+<header class="lhero"><div class="wrap">
+  <h1 class="page">Build log</h1>
+  <p class="lead">What we built and what we shipped, in date order. We only log work with screens and records to show for it.</p>
+  <div class="filters" role="group" aria-label="Filter by field">
+    <button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="erp" aria-pressed="false">ERP & business systems</button><button type="button" data-filter="o2o" aria-pressed="false">O2O platforms</button><button type="button" data-filter="content" aria-pressed="false">Content & media</button><button type="button" data-filter="ai" aria-pressed="false">AI & lifestyle apps</button><button type="button" data-filter="gateway" aria-pressed="false">Gateway</button><button type="button" data-filter="site" aria-pressed="false">Company & website</button>
+  </div>
+</div></header>
+
+<section class="tl" aria-label="Work records"><div class="wrap" style="position:relative">
+  <i class="rail" aria-hidden="true"></i>
+  <article class="entry" data-field="site">
+    <div class="when"><span class="d">11.11</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">Company & website</span><span class="prod">isaacbridge.com</span></div>
+      <h3>isaacbridge.com went live.</h3>
+      <p class="sum">We connected the renewed site to the new domain and submitted the sitemap to Google Search. The same day, the bridge-shaped A logo went live across the site.</p>
+      <figure class="pic"><img src="../media/og.jpg" alt="The Isaac Bridge logo on a dark background" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>The domain and HTTPS are set up on Cloudflare, and the www address redirects to isaacbridge.com.</li><li>The home page and 10 product detail pages went into a sitemap submitted to Google Search Console.</li><li>The header, footer, tab icon and share image now use the new logo.</li></ul></details>
+    </div>
+  </article>
+  <article class="entry" data-field="gateway">
+    <div class="when"><span class="d">11.11</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">Gateway</span><span class="prod">Gateway</span></div>
+      <h3>We added the spring set of window views.</h3>
+      <p class="sum">For each of the 20 stops on the route, we made day and night videos of local spring scenery and added them to the game. From March, every passenger's bus window turns to spring.</p>
+      <figure class="pic"><img src="../media/log/gateway-spring-city.jpg" alt="A city street in cherry blossom, a spring view from the Gateway bus window" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>Each place shows its local character, like Seoul's cherry blossom streets, Jeju's canola fields and the Daegwallyeong sheep farm.</li><li>We made and added 40 looping videos for computers and 40 for phones.</li><li>Winter videos play for now. Add ?season=spring to the address to preview spring.</li></ul></details>
+      <a class="go" href="work/gateway.html">View the product →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="site">
+    <div class="when"><span class="d">11.10</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">Company & website</span><span class="prod">Website renewal</span></div>
+      <h3>We redesigned the website.</h3>
+      <p class="sum">We built a new type-led home page, with a hero filled by a 3D motion graphics loop made in Higgsfield. Each of the 10 products now has its own detail page.</p>
+      <figure class="pic"><img src="../media/hero-poster.webp" alt="A 3D motion graphic of interlocking yellow stars and capsules" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>From the references we took only composition and color, and made the subject the work of building software.</li><li>Product detail pages are generated in one pass from the researched source files.</li><li>All motion on the page can be paused with a single round button.</li></ul></details>
+    </div>
+  </article>
+  <article class="entry" data-field="gateway">
+    <div class="when"><span class="d">11.09</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">Gateway</span><span class="prod">Gateway</span></div>
+      <h3>We made it rain and snow outside the window.</h3>
+      <p class="sum">We made five kinds of rain and three kinds of snow, down to the raindrops and snowflakes that hit and cling to the bus window.</p>
+      <figure class="pic"><img src="../media/log/gateway-snow.jpg" alt="A riverside in heavy snow, seen from the Gateway bus window" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>From drizzle to downpour and typhoon, each kind of rain has its own drop size and speed.</li><li>At night, the warm light from inside the bus spreads across the wet road.</li><li>The same day, the game was translated into four languages and the landing page into eleven.</li></ul></details>
+      <a class="go" href="work/gateway.html">View the product →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="gateway">
+    <div class="when"><span class="d">11.08</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">Gateway</span><span class="prod">Gateway</span></div>
+      <h3>Gateway went live at zen-gateway.com.</h3>
+      <p class="sum">We added a landing page to the bus game first built the day before, and connected it to its own address, zen-gateway.com.</p>
+      <figure class="pic"><img src="../media/log/gateway-landing.jpg" alt="The Gateway landing page hero" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>In one day, November 7, we built the bus interior, shared rides, the terminal and boarding, YouTube radio and mileage.</li><li>zen-gateway.com is the landing page, and /play/ is the game.</li><li>The same day, the game's data storage moved to Supabase.</li></ul></details>
+      <a class="go" href="work/gateway.html">View the product →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="site">
+    <div class="when"><span class="d">11.03</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">Company & website</span><span class="prod">Website engineering</span></div>
+      <h3>The Korean font ships only the characters it needs.</h3>
+      <p class="sum">Instead of sending the full 2,057,688-byte font, we build a subset holding only the characters the built pages actually use.</p>
+      <figure class="pic type" aria-hidden="true"><span>가</span></figure>
+      <details><summary>Details</summary><ul><li>At build time, we collect the characters used in body text, headings, accessibility labels and input hints.</li><li>The recorded body-text subset grew from 49 KB to 65 KB with a light heading weight added.</li><li>A font once split into many fragment files is now a single preloaded file.</li></ul></details>
+    </div>
+  </article>
+  <article class="entry" data-field="o2o">
+    <div class="when"><span class="d">10.31</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">O2O platforms</span><span class="prod">Picklebally</span></div>
+      <h3>Picklebally 1.0.0 was released on the App Store.</h3>
+      <p class="sum">We launched the app for finding and booking pickleball courts in Ho Chi Minh City, in English, Korean and Vietnamese.</p>
+      <figure class="pic type" aria-hidden="true"><span>1.0</span></figure>
+      <details><summary>Details</summary><ul><li>Pay with VietQR, the operator confirms, and a QR ticket is issued.</li><li>Find people to play with through open sessions, ELO ratings and the leaderboard.</li><li>An operator mode for court operators is built into the same app.</li></ul></details>
+      <a class="go" href="work/picklebally.html">View the product →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="o2o">
+    <div class="when"><span class="d">10.30</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">O2O platforms</span><span class="prod">Rami AI</span></div>
+      <h3>We finished the Rami AI landing page in nine languages.</h3>
+      <p class="sum">We finished the global landing page and phone ordering trial for Rami, the shop agent for restaurants and cafés.</p>
+      <figure class="pic phone"><img src="../media/rami/02-guest-order-chat.png" alt="Guest screen confirming an order in a chat with Rami" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>Guests scan the table QR code, read the menu in their own language and order by chatting with Rami.</li><li>The next day, we added a platform admin demo in Korean, English and Vietnamese.</li><li>AI replies follow prepared scenarios at this demo stage.</li></ul></details>
+      <a class="go" href="work/rami.html">View the product →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="site">
+    <div class="when"><span class="d">10.16</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">Company & website</span><span class="prod">Isaac Bridge Co., Ltd.</span></div>
+      <h3>Isaac Bridge Co., Ltd. was founded.</h3>
+      <p class="sum">We opened in Yeonsu-gu, Incheon, registered for application and system software development and supply.</p>
+      <figure class="pic"><img src="../media/brand/isaacbridge-icon.svg" alt="Isaac Bridge icon" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>The business start date on the registration certificate is October 16, 2026.</li><li>The business type is information and communications.</li></ul></details>
+      <a class="go" href="company.html">Meet the company →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="ai">
+    <div class="when"><span class="d">10.12</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">AI & lifestyle apps</span><span class="prod">ONE AI</span></div>
+      <h3>ONE AI now runs live AI for signed-in members.</h3>
+      <p class="sum">On the production domain, chat, file analysis, web search, and image creation and editing now run through the server after member verification.</p>
+      <figure class="pic phone"><img src="../media/one-ai/02-mobile-request-ko.png" alt="ONE AI request screen on a phone" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>Answers stream in real time, shown with their sources and any files created.</li><li>AI keys stay on the server and are never sent to the browser.</li><li>On phones, the input box now stays on screen when the keyboard opens.</li></ul></details>
+      <a class="go" href="work/one-ai.html">View the product →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="ai">
+    <div class="when"><span class="d">10.02</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">AI & lifestyle apps</span><span class="prod">MOA</span></div>
+      <h3>MOA 1.1.0 went live on the App Store.</h3>
+      <p class="sum">We released iOS 1.1.0 of MOA, the app that brings schedules, tasks, money and routines together.</p>
+      <figure class="pic phone"><img src="../media/moa/calendar-ko.webp" alt="MOA calendar screen" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>Data is saved on the device first with no sign-up, and syncs through iCloud if you choose.</li><li>Money records in multiple currencies, alarms and routines, all in one place.</li></ul></details>
+      <a class="go" href="work/moa.html">View the product →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="content">
+    <div class="when"><span class="d">09.10</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">Content & media</span><span class="prod">SceneDeal</span></div>
+      <h3>We opened a member help center on SceneDeal.</h3>
+      <p class="sum">Inquiries that came in through an email link moved to an on-site help center, where admin replies and status are managed in one place.</p>
+      <figure class="pic"><img src="../media/scenedeal/01-home-ko.png" alt="The SceneDeal marketplace home screen" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>Supports seven inquiry types and four screen languages (Korean, English, Vietnamese and Simplified Chinese).</li><li>Members see only their own inquiries and conversations, and can follow up on a reply.</li><li>Five days later, we also deployed the Telegram support relay.</li></ul></details>
+      <a class="go" href="work/scenedeal.html">View the product →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="o2o">
+    <div class="when"><span class="d">09.02</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">O2O platforms</span><span class="prod">Partya</span></div>
+      <h3>We completed Partya's core flow.</h3>
+      <p class="sum">Discovering meetups in reels, joining in one tap, chatting and leaving reviews all work in the iOS and Android development builds.</p>
+      <figure class="pic phone"><img src="../media/partya/02-gathering.jpg" alt="Partya meetup detail screen" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>Live chat gained translation and photo and video sharing.</li><li>The push notification server is running.</li><li>Next up: accounts and in-app purchases for the store release.</li></ul></details>
+      <a class="go" href="work/partya.html">View the product →</a>
+    </div>
+  </article>
+  <article class="entry" data-field="erp">
+    <div class="when"><span class="d">August</span><span class="y">2026</span></div>
+    <i class="dot" aria-hidden="true"></i>
+    <div class="card">
+      <div class="meta"><span class="tag">ERP & business systems</span><span class="prod">MARBL Works</span></div>
+      <h3>MARBL Works was made ready for backend handover.</h3>
+      <p class="sum">We split the validated prototype into four apps, for sales, production, customer ordering and delivery drivers, and documented the storage design and handover notes for the backend team.</p>
+      <figure class="pic"><img src="../media/marbl-works/03-weighing-ko.png" alt="MARBL Works weighing screen" loading="lazy"></figure>
+      <details><summary>Details</summary><ul><li>All four apps share the same data, so an order in the customer app shows up on the sales screens right away.</li><li>The customer and driver apps work in Korean, Vietnamese and English.</li><li>Printed documents such as delivery notes and transaction statements use the same type system as the apps.</li></ul></details>
+      <a class="go" href="work/marbl-works.html">View the product →</a>
+    </div>
+  </article>
+</div></section>
+
+<section class="lcta"><div class="wrap"><div class="box">
+  <div><h2>Tell us about your project.</h2><p>Describe the work you want to improve and where things stand today. We will define the software and the first step with you.</p></div>
+  <a class="btn" href="contact.html"><i><svg class="star"><use href="#st"/></svg></i>Discuss your project</a>
+</div></div></section>
+</main>
+
+<footer><div class="wrap">
+  <div><a class="logo" href="index.html"><img src="../media/brand/isaacbridge-horizontal-white.svg" alt="Isaac Bridge"></a><div class="line">Software built around real work.</div></div>
+  <dl><dt>Legal name</dt><dd>Isaac Bridge Co., Ltd.</dd><dt>Representative</dt><dd>Lee Ji-young</dd><dt>Business registration no.</dt><dd>296-87-04307</dd><dt>Registered address</dt><dd>707-Cha67, 7F, 22 Harmony-ro 178beon-gil, Yeonsu-gu, Incheon, Korea</dd></dl>
+  <div class="copy"><span>© Isaac Bridge Co., Ltd.</span><span>Privacy Policy</span></div>
+</div></footer>
+<button class="pause" data-pause="Pause motion" data-play="Play motion" aria-label="Pause motion">II</button>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="../assets/site.js"></script>
+<script>
+if (window.gsap && window.Site) {
+  const S = window.Site;
+  S.riseIn(document.querySelector('.lhero h1'));
+  S.blurIn(document.querySelector('.lhero .lead'));
+  S.liftIn([...document.querySelectorAll('.filters button')], { y: 18, stagger: .05 });
+
+  // the timeline line draws with the scroll
+  gsap.fromTo('.tl .rail', { scaleY: 0 }, { scaleY: 1, ease: 'none',
+    scrollTrigger: { trigger: '.tl', start: 'top 70%', end: 'bottom 75%', scrub: .4 } });
+
+  const entries = [...document.querySelectorAll('.entry')];
+  entries.forEach(e => {
+    const d = e.querySelector('.d'), card = e.querySelector('.card'), img = e.querySelector('.pic img');
+    d.classList.add('mask');
+    gsap.timeline({ scrollTrigger: S.once(e, 'top 84%') })
+      .from(e.querySelector('.dot'), { scale: 0, duration: .5, ease: 'back.out(3)' })
+      .from(S.split(d).chars, { yPercent: 110, duration: .7, stagger: .05, ease: 'expo.out' }, 0)          // the date rolls in
+      .from(e.querySelector('.y'), { opacity: 0, y: 8, duration: .5 }, .2)
+      .fromTo(card, { clipPath: 'inset(0% 0% 100% 0% round 28px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1, ease: 'expo.inOut', clearProps: 'clipPath' }, .05)
+      .from(card.querySelectorAll('.meta, h3, .sum, details, .go'), { opacity: 0, y: 18, duration: .6, stagger: .06, ease: 'power3.out' }, .4);
+    if (img) gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: 'none',
+      scrollTrigger: { trigger: e, start: 'top bottom', end: 'bottom top', scrub: .5 } });
+    // opening the details slides the list down
+    const det = e.querySelector('details');
+    det.addEventListener('toggle', () => { if (det.open) gsap.from(det.querySelector('ul'), { height: 0, opacity: 0, duration: .5, ease: 'expo.out', clearProps: 'height' }); });
+  });
+
+  // filter: leaving entries fade, the rest glide to their new places, new ones rise in (FLIP by hand)
+  const pills = [...document.querySelectorAll('.filters button')];
+  let busy = false;
+  pills.forEach(b => b.addEventListener('click', () => {
+    if (busy || b.getAttribute('aria-pressed') === 'true') return;
+    busy = true;
+    pills.forEach(p => p.setAttribute('aria-pressed', String(p === b)));
+    const f = b.dataset.filter, show = e => f === 'all' || e.dataset.field === f;
+    const before = new Map(entries.filter(e => !e.hidden).map(e => [e, e.getBoundingClientRect().top]));
+    const leaving = entries.filter(e => !e.hidden && !show(e));
+    const swap = () => {
+      entries.forEach(e => { e.hidden = !show(e); });
+      entries.filter(e => !e.hidden).forEach(e => {
+        if (before.has(e)) gsap.fromTo(e, { y: before.get(e) - e.getBoundingClientRect().top }, { y: 0, duration: .7, ease: 'expo.out' });
+        else gsap.fromTo(e, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .6, ease: 'expo.out' });
+        gsap.set(e.querySelector('.card'), { clearProps: 'clipPath' });
+      });
+      gsap.set(leaving, { opacity: 1, scale: 1 });
+      ScrollTrigger.refresh();
+      busy = false;
+    };
+    leaving.length ? gsap.to(leaving, { opacity: 0, scale: .97, duration: .25, ease: 'power2.in', onComplete: swap }) : swap();
+  }));
+
+  S.riseIn(document.querySelector('.lcta h2'));
+  S.magnetic(document.querySelector('.lcta .btn'));
+}
+</script>
+</body>
+</html>
