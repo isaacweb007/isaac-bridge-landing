@@ -91,6 +91,20 @@ h1 mark::after{content:"";position:absolute;left:-.04em;right:.18em;bottom:.08em
 .gsap .track{animation:none}
 @keyframes slide{to{transform:translateX(-50%)}}
 
+/* ---------- intro film: plays muted on arrival, one button restarts it with sound ---------- */
+.film{padding:170px 0 0}
+.film-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.film .eyebrow{display:block;font-size:13px;font-weight:700;letter-spacing:.14em;color:var(--muted);margin-bottom:18px}
+.player{position:relative;margin-top:56px;border-radius:28px;overflow:hidden;background:var(--ink);aspect-ratio:16/9;will-change:clip-path}
+.player video{width:100%;height:100%;object-fit:cover}
+.player .play{position:absolute;left:28px;bottom:28px;display:inline-flex;align-items:center;gap:12px;height:60px;padding:0 26px 0 10px;border:0;border-radius:999px;
+  background:var(--y);color:var(--ink);font:700 17px/1 var(--font);cursor:pointer;transition:transform .5s var(--ease),opacity .3s}
+.player .play i{width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--y);display:grid;place-items:center;font-style:normal;font-size:14px;padding-left:2px}
+.player .play:hover{transform:scale(1.04)}
+.player .play:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.player .len{position:absolute;right:28px;bottom:44px;font-size:13px;font-weight:700;letter-spacing:.12em;color:rgba(255,255,255,.75);text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.player.on .play,.player.on .len{opacity:0;pointer-events:none}
+
 /* ---------- work bento: 7 projects, 7 cells ---------- */
 .work{padding:200px 0 150px}
 h2{font-size:clamp(40px,5vw,76px);font-weight:900;line-height:1.08;letter-spacing:-.06em}
@@ -205,6 +219,11 @@ footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;disp
   .band{margin:-26px -30px 0;padding:16px 0}
   .track{font-size:52px;gap:32px}.track span{gap:32px}
 
+  .film{padding:96px 0 0}
+  .player{margin-top:32px;border-radius:20px}
+  .player .play{left:14px;bottom:14px;height:48px;font-size:15px;padding:0 18px 0 6px}.player .play i{width:36px;height:36px}
+  .player .len{display:none}
+
   /* work: one column, every cell keeps its own colour */
   .work{padding:110px 0 90px}
   h2{font-size:34px;letter-spacing:-.055em}
@@ -287,6 +306,19 @@ footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;disp
 </div></div>
 
 <main>
+<section class="film" id="intro-film"><div class="wrap">
+  <div class="film-head"><div><span class="eyebrow">INTRO FILM · 0:30</span>
+    <h2>Isaac Bridge<br>in 30 seconds.</h2></div>
+    <p class="lead">We turn ideas into software that works. Here is what we build and how we work, in 30 seconds.</p></div>
+  <div class="player" id="player">
+    <video id="intro" muted loop playsinline preload="metadata" poster="../media/intro/poster.jpg" aria-label="Isaac Bridge 30-second intro film, English narration with Korean subtitles">
+      <source src="../media/intro/isaacbridge-intro.mp4" type="video/mp4">
+    </video>
+    <button class="play" id="introPlay" type="button"><i>▶</i>Watch with sound</button>
+    <span class="len" aria-hidden="true">ENGLISH VO · KOREAN SUBTITLES</span>
+  </div>
+</div></section>
+
 <section class="work" id="work"><div class="wrap">
   <h2>Before we explain,<br>we show you the work.</h2>
   <p class="lead">Different kinds of work, addressed through software. See how each product works and what we built.</p>
@@ -381,6 +413,14 @@ new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? onScreen.add
 films.slice(1).forEach(v => new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target)); sync(); }).observe(v));
 btn.onclick = () => { paused = !paused; sync(); };
 ['pointerdown', 'keydown', 'touchstart'].forEach(t => addEventListener(t, () => { if (!paused) sync(); }, { once: true, passive: true }));
+
+/* ---------- intro film: muted preview loops; the button restarts it from 0:00 with sound ---------- */
+const intro = document.getElementById('intro'), player = document.getElementById('player');
+document.getElementById('introPlay').onclick = () => {
+  Object.assign(intro, { muted: false, loop: false, controls: true }); intro.currentTime = 0;
+  player.classList.add('on'); paused = false; sync(); play(intro);
+};
+intro.onended = () => { Object.assign(intro, { muted: true, loop: true, controls: false }); player.classList.remove('on'); play(intro); };
 
 /* ---------- hero motion graphics: 120 BPM, one beat = 0.5 s ---------- */
 if (window.gsap) {
@@ -551,6 +591,12 @@ if (window.gsap && window.ScrollTrigger && window.splitText) {
   ScrollTrigger.create({ start: 0, end: 'max', onUpdate: self => { const v = self.getVelocity(); dir = self.direction || dir;
     gsap.to(run, { timeScale: dir * Math.min(1 + Math.abs(v) / 260, 6), duration: .25, overwrite: true }); lean(gsap.utils.clamp(-10, 10, -v / 160)); } });
   ScrollTrigger.addEventListener('scrollEnd', () => { gsap.to(run, { timeScale: dir, duration: .9, overwrite: true }); lean(0); });
+
+  // intro film: the title rises, the player opens from a smaller rounded window as it scrolls in
+  const filmSec = document.getElementById('intro-film');
+  riseIn(filmSec.querySelector('h2')); blurIn(filmSec.querySelector('.lead'));
+  gsap.fromTo('#player', { clipPath: 'inset(8% 10% 8% 10% round 40px)' }, { clipPath: 'inset(0% 0% 0% 0% round 28px)', ease: 'none',
+    scrollTrigger: { trigger: '#player', start: 'top 95%', end: 'top 35%', scrub: .6 } });
 
   // fields: lines draw across, names rise then gain weight as they reach the middle, notes and chips follow
   const fields = document.getElementById('fields');
