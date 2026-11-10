@@ -21,9 +21,29 @@ export default {
       url.pathname = url.pathname.slice(0, -5);
       return env.ASSETS.fetch(new Request(url, request));
     }
-    return env.ASSETS.fetch(request);
+    const res = await env.ASSETS.fetch(request);
+    return /\.(mp4|webm)$/.test(url.pathname) ? ranged(request, res) : res;
   },
 };
+
+// Video needs byte ranges (iPhone Safari will not play an mp4 without 206 answers); the asset
+// server answers 200 with the whole file, so slice it here. Files are a few MB.
+async function ranged(request, res) {
+  const m = /^bytes=(\d*)-(\d*)$/.exec(request.headers.get('range') || '');
+  const headers = new Headers(res.headers);
+  headers.set('accept-ranges', 'bytes');
+  if (res.status !== 200 || !m || (!m[1] && !m[2])) return new Response(res.body, { status: res.status, headers });
+  const buf = await res.arrayBuffer(), size = buf.byteLength;
+  let start = m[1] ? +m[1] : Math.max(0, size - +m[2]);
+  let end = m[1] && m[2] ? Math.min(+m[2], size - 1) : size - 1;
+  if (start >= size || start > end) {
+    headers.set('content-range', `bytes */${size}`);
+    return new Response(null, { status: 416, headers });
+  }
+  headers.set('content-range', `bytes ${start}-${end}/${size}`);
+  headers.set('content-length', String(end - start + 1));
+  return new Response(buf.slice(start, end + 1), { status: 206, headers });
+}
 
 const json = (status, body) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 const clean = (v, max) => String(v ?? '').replace(/\u0000/g, '').trim().slice(0, max);
