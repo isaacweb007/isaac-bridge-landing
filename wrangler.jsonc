@@ -1,0 +1,12 @@
+{
+  // isaacbridge.com: the landing page served by Cloudflare Workers static assets.
+  // Deploy: npx wrangler deploy (in this folder). GitHub Pages serves the same files as a backup preview.
+  "name": "isaac-bridge-landing",
+  "main": "worker.js",
+  "compatibility_date": "2026-11-01",
+  "assets": { "directory": ".", "binding": "ASSETS", "run_worker_first": true },
+  "routes": [
+    { "pattern": "isaacbridge.com", "custom_domain": true },
+    { "pattern": "www.isaacbridge.com", "custom_domain": true }
+  ]
+}
