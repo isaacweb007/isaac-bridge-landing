@@ -86,14 +86,19 @@ h1 mark::after{content:"";position:absolute;left:-.04em;right:.18em;bottom:.08em
 h2{font-size:clamp(40px,5vw,76px);font-weight:900;line-height:1.08;letter-spacing:-.06em}
 .lead{margin-top:24px;font-size:19px;line-height:1.7;color:var(--muted);max-width:34em}
 .bento{margin-top:72px;display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
-.cell{position:relative;border-radius:28px;overflow:hidden;background:var(--card);padding:36px;display:flex;flex-direction:column;min-height:520px;
-  transition:transform .6s var(--ease)}
-.cell:hover{transform:translateY(-6px)}
+.cell{position:relative;border-radius:28px;overflow:hidden;background:var(--card);padding:36px;display:flex;flex-direction:column;min-height:520px;will-change:transform}
+/* cursor spotlight on hover */
+.cell::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:var(--spot,0);transition:opacity .45s;
+  background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,200,0,.22),transparent 62%)}
+.cell.dark::after{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.13),transparent 62%)}
+.cell.yellow::after{background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.4),transparent 62%)}
+/* split type: words keep together, characters move */
+.w{display:inline-block;white-space:nowrap}.ch{display:inline-block}
+#work h2 .w,.cell h3 .w{overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em;vertical-align:top}
 .cell .tag{font-size:14px;font-weight:600;color:var(--muted)}
 .cell h3{margin-top:12px;font-size:52px;font-weight:900;letter-spacing:-.05em;line-height:1}
 .cell .u{margin-top:14px;font-size:21px;font-weight:700;letter-spacing:-.03em;line-height:1.4;max-width:17em}
-.cell .shot{position:absolute;transition:transform .8s var(--ease)}
-.cell:hover .shot{transform:translateY(-10px) rotate(-1deg)}
+.cell .shot{position:absolute}
 .cell.dark{background:var(--ink);color:#fff}.cell.dark .tag{color:#b5b9b3}
 .cell.yellow{background:var(--y)}.cell.yellow .tag{color:#5a4700}
 .cell.grey{background:#E3E7E4}
@@ -102,8 +107,19 @@ h2{font-size:clamp(40px,5vw,76px);font-weight:900;line-height:1.08;letter-spacin
 .cell.phone .shot{width:56%;left:50%;margin-left:-28%;top:205px;border-radius:26px;box-shadow:0 30px 60px rgba(30,31,29,.2)}
 .cell.type .type{margin-top:auto;font-size:104px;font-weight:900;letter-spacing:-.07em;line-height:.86}
 .cell.dark.type .type{color:var(--y)}
+/* Moabi: languages decode into each other */
+.t-lang .scr{display:inline-block;min-width:1.25em}
+/* Picklebally: a ball volleys between the two words */
+.t-ball{position:relative}.t-ball .w1,.t-ball .w2{display:inline-block;transform-origin:50% 100%}
+.t-ball .ball{position:absolute;left:0;top:0;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;background:#fff;box-shadow:0 6px 12px rgba(0,0,0,.35)}
+/* short drama: a 9:16 frame swiping through a vertical feed */
+.t-feed .ph{display:inline-block;position:relative;width:.44em;height:.78em;margin-left:.14em;vertical-align:-.04em;border:5px solid var(--ink);border-radius:14px;overflow:hidden}
+.t-feed .reel{position:absolute;left:5px;right:5px;top:5px}.t-feed .reel i{display:block;height:calc(.78em - 24px);margin-bottom:6px;border-radius:6px;background:var(--ink)}
+.t-feed .reel i:nth-child(2n){background:#fff}
+.t-feed .bar{position:absolute;left:0;bottom:0;height:4px;width:100%;background:#fff;transform-origin:left;transform:scaleX(0)}
 .cell .go{position:absolute;right:28px;top:28px;width:48px;height:48px;border-radius:50%;border:1.5px solid currentColor;display:grid;place-items:center;font-size:18px;transition:background .3s,transform .5s var(--ease)}
-.cell:hover .go{background:var(--y);border-color:var(--y);color:var(--ink);transform:rotate(-45deg)}
+.cell:hover .go{background:var(--y);border-color:var(--y);color:var(--ink)}
+.cell .go b{display:block;font-weight:400;transition:transform .5s var(--ease)}.cell:hover .go b{transform:rotate(-45deg)}
 .more{margin-top:44px;display:flex;justify-content:flex-end}
 
 /* ---------- what we build: variable-weight words ---------- */
@@ -263,25 +279,25 @@ footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;disp
 
   <div class="bento">
     <a class="cell dark desk" style="grid-column:span 8" href="work/marbl-works.html"><span class="tag">ERP·업무 시스템 · 개발 중</span><h3>MARBL Works</h3>
-      <p class="u">주문 하나가, 현장의 작업으로.</p><img class="shot" src="media/marbl-works/01-dashboard-ko.png" alt="신규 주문 알림과 최근 주문 목록, 재고와 출하 현황이 표시된 MARBL Works 통합 대시보드" loading="lazy"><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">주문 하나가, 현장의 작업으로.</p><img class="shot" src="media/marbl-works/01-dashboard-ko.png" alt="신규 주문 알림과 최근 주문 목록, 재고와 출하 현황이 표시된 MARBL Works 통합 대시보드" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
     <a class="cell yellow type" style="grid-column:span 4" href="work/moabi.html"><span class="tag">ERP·업무 시스템 · 운영 중</span><h3>Moabi</h3>
-      <p class="u">한국어로 쓰면, 베트남어로 도착합니다</p><div class="type">KO<br>→VI</div><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">한국어로 쓰면, 베트남어로 도착합니다</p><div class="type t-lang"><span class="scr a">KO</span><br>→<span class="scr b">VI</span></div><span class="go" aria-hidden="true"><b>→</b></span></a>
     <a class="cell grey phone" style="grid-column:span 4" href="work/rami.html"><span class="tag">O2O 플랫폼 · 데모</span><h3>라미 AI</h3>
-      <p class="u">말이 통하는 우리 샵, 라미</p><img class="shot" src="media/rami/01-guest-menu.png" alt="손님 앱 메뉴 화면. 7번 테이블에서 김치전 등 메뉴를 담고 수량을 고르는 모습" loading="lazy"><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">말이 통하는 우리 샵, 라미</p><img class="shot" src="media/rami/01-guest-menu.png" alt="손님 앱 메뉴 화면. 7번 테이블에서 김치전 등 메뉴를 담고 수량을 고르는 모습" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
     <a class="cell light phone" style="grid-column:span 4" href="work/partya.html"><span class="tag">O2O 플랫폼 · 개발 중</span><h3>Partya</h3>
-      <p class="u">릴스로 발견하고 탭 한 번으로 참여</p><img class="shot" src="media/partya/01-feed.jpg" alt="릴스 피드 화면. 루프탑 수영장 파티 영상 위에 &#x27;탭 한 번으로 참여&#x27; 버튼과 남은 자리가 보입니다" loading="lazy"><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">릴스로 발견하고 탭 한 번으로 참여</p><img class="shot" src="media/partya/01-feed.jpg" alt="릴스 피드 화면. 루프탑 수영장 파티 영상 위에 &#x27;탭 한 번으로 참여&#x27; 버튼과 남은 자리가 보입니다" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
     <a class="cell dark type" style="grid-column:span 4" href="work/picklebally.html"><span class="tag">O2O 플랫폼 · 출시</span><h3>Picklebally</h3>
-      <p class="u">호치민 피클볼 코트 예약과 경기 매칭</p><div class="type">Book.<br>Play.</div><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">호치민 피클볼 코트 예약과 경기 매칭</p><div class="type t-ball"><span class="w1">Book.</span><br><span class="w2">Play.</span><i class="ball"></i></div><span class="go" aria-hidden="true"><b>→</b></span></a>
     <a class="cell yellow type" style="grid-column:span 4" href="work/shortdrama.html"><span class="tag">콘텐츠·미디어 · 베타</span><h3>숏드라마<br>스트리밍</h3>
-      <p class="u">텔레그램 안에서 바로 보는 세로형 드라마</p><div class="type">9:16</div><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">텔레그램 안에서 바로 보는 세로형 드라마</p><div class="type t-feed">9:16<span class="ph"><span class="reel"><i></i><i></i><i></i><i></i></span><b class="bar"></b></span></div><span class="go" aria-hidden="true"><b>→</b></span></a>
     <a class="cell light desk" style="grid-column:span 8" href="work/scenedeal.html"><span class="tag">콘텐츠·미디어 · 베타</span><h3>SceneDeal</h3>
-      <p class="u">고객의 질문을, 답할 팀에게.</p><img class="shot" src="media/scenedeal/01-home-ko.png" alt="&#x27;다음 흥행의 시작, 씬딜에서.&#x27; 문구와 SAMPLE 표시 작품 포스터가 있는 SceneDeal 홈" loading="lazy"><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">고객의 질문을, 답할 팀에게.</p><img class="shot" src="media/scenedeal/01-home-ko.png" alt="&#x27;다음 흥행의 시작, 씬딜에서.&#x27; 문구와 SAMPLE 표시 작품 포스터가 있는 SceneDeal 홈" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
     <a class="cell light phone" style="grid-column:span 4" href="work/one-ai.html"><span class="tag">AI·생활 앱 · 베타</span><h3>ONE AI</h3>
-      <p class="u">대화에서, 이어서 쓸 수 있는 작업물로.</p><img class="shot" src="media/one-ai/01-mobile-home-ko.png" alt="&#x27;오늘, 어떤 일을 함께할까요?&#x27; 입력창과 자료 정리·문서 만들기·이미지 만들기 버튼이 있는 ONE AI 모바일 홈" loading="lazy"><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">대화에서, 이어서 쓸 수 있는 작업물로.</p><img class="shot" src="media/one-ai/01-mobile-home-ko.png" alt="&#x27;오늘, 어떤 일을 함께할까요?&#x27; 입력창과 자료 정리·문서 만들기·이미지 만들기 버튼이 있는 ONE AI 모바일 홈" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
     <a class="cell grey phone" style="grid-column:span 4" href="work/moa.html"><span class="tag">AI·생활 앱 · 출시</span><h3>MOA</h3>
-      <p class="u">오늘의 일을, 한곳에서 이어가도록.</p><img class="shot" src="media/moa/today-ko.webp" alt="오늘의 Top 3 할 일, 루틴, 일정과 남은 예산이 표시된 MOA 오늘 화면" loading="lazy"><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">오늘의 일을, 한곳에서 이어가도록.</p><img class="shot" src="media/moa/today-ko.webp" alt="오늘의 Top 3 할 일, 루틴, 일정과 남은 예산이 표시된 MOA 오늘 화면" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
     <a class="cell dark desk" style="grid-column:span 4" href="work/gateway.html"><span class="tag">게이트웨이 · 베타</span><h3>Gateway</h3>
-      <p class="u">목적지 없는 버스, 잠깐의 휴식</p><img class="shot" src="media/gateway/bus-window-rain-night-pc.jpg" alt="밤에 비가 내리는 버스 창가 자리. 창에 빗방울이 맺혀 있고, 아래에 버스 라디오와 커튼, 확대, 내리기 버튼이 보이는 PC 화면" loading="lazy"><span class="go" aria-hidden="true">→</span></a>
+      <p class="u">목적지 없는 버스, 잠깐의 휴식</p><img class="shot" src="media/gateway/bus-window-rain-night-pc.jpg" alt="밤에 비가 내리는 버스 창가 자리. 창에 빗방울이 맺혀 있고, 아래에 버스 라디오와 커튼, 확대, 내리기 버튼이 보이는 PC 화면" loading="lazy"><span class="go" aria-hidden="true"><b>→</b></span></a>
   </div>
   <div class="more"><a class="tlink" href="#fields">사업 분야로 보기 →</a></div>
 </div></section>
@@ -329,6 +345,7 @@ footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;disp
 </div></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script>
 const qs = new URLSearchParams(location.search);
 if (qs.has('shot')) document.documentElement.classList.add('shot-mode');
@@ -408,6 +425,89 @@ if (window.gsap) {
     .to(caret, { opacity: 0, duration: .2 }, 6);
   addEventListener('resize', () => { if (tl.progress() === 1) { T = place(); cards.forEach((c, i) => gsap.set(c, { x: T[i].x, y: T[i].y })); } });
   if (qs.has('t')) { tl.pause(+qs.get('t')); gsap.globalTimeline.getChildren(false, true, false).forEach(x => x !== tl && x.pause()); }
+}
+
+/* ---------- work section: every piece has its own motion ---------- */
+if (window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+  // split text into word spans holding character spans; keeps <br> and nested inline tags
+  const split = el => { const chars = [], words = [];
+    const walk = node => [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) { const f = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(tok => { if (!tok) return; if (/^\s+$/.test(tok)) return f.append(' ');
+          const w = document.createElement('span'); w.className = 'w'; words.push(w);
+          [...tok].forEach(c => { const ch = document.createElement('span'); ch.className = 'ch'; ch.textContent = c; w.append(ch); chars.push(ch); });
+          f.append(w); });
+        n.replaceWith(f); }
+      else if (n.nodeType === 1 && n.tagName !== 'BR') walk(n); });
+    walk(el); return { chars, words }; };
+
+  const work = document.getElementById('work');
+  // headline: letters rise out of their words and thicken; the lead clears from a blur, word by word
+  const h2 = split(work.querySelector('h2')), lead = split(work.querySelector('.lead'));
+  gsap.timeline({ scrollTrigger: { trigger: work.querySelector('h2'), start: 'top 85%', once: true } })
+    .from(h2.chars, { yPercent: 115, rotate: 7, fontWeight: 200, duration: 1, ease: 'expo.out', stagger: .022 })
+    .from(lead.words, { opacity: 0, y: 14, filter: 'blur(8px)', duration: .7, ease: 'power3.out', stagger: .035 }, '-=.6');
+
+  // decode one string into another, letter by letter
+  const scramble = (el, to, dur = .55) => { const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', o = { p: 0 };
+    return gsap.to(o, { p: 1, duration: dur, ease: 'none', onUpdate: () => {
+      el.textContent = [...to].map((c, i) => o.p >= (i + 1) / to.length ? c : pool[Math.random() * 26 | 0]).join(''); } }); };
+  const loops = {
+    't-lang': t => { const a = t.querySelector('.a'), b = t.querySelector('.b');
+      const pairs = [['VI', 'KO'], ['KO', 'EN'], ['EN', 'KO'], ['KO', 'VI']], l = gsap.timeline({ repeat: -1 });
+      pairs.forEach(([x, y]) => l.add(scramble(a, x), '+=1.4').add(scramble(b, y), '<.12')); return l; },
+    't-ball': t => { const w1 = t.querySelector('.w1'), w2 = t.querySelector('.w2'), ball = t.querySelector('.ball');
+      const at = w => ({ x: w.offsetLeft + w.offsetWidth + 18, y: w.offsetTop + w.offsetHeight * .55 });
+      const A = at(w1), Bp = at(w2), top = Math.min(A.y, Bp.y) - 70;
+      gsap.set(ball, { x: A.x, y: A.y });
+      const hop = (from, to, word) => gsap.timeline()
+        .to(ball, { x: to.x, duration: .5, ease: 'none' })
+        .to(ball, { keyframes: [{ y: top, duration: .22, ease: 'power2.out' }, { y: to.y, duration: .28, ease: 'power2.in' }] }, 0)
+        .fromTo(word, { scaleY: .82, scaleX: 1.06 }, { scaleY: 1, scaleX: 1, duration: .5, ease: 'elastic.out(1.2,.4)' }, .5);
+      return gsap.timeline({ repeat: -1 }).add(hop(A, Bp, w2)).add(hop(Bp, A, w1), '+=.5').to({}, { duration: .5 }); },
+    't-feed': t => { const reel = t.querySelector('.reel'), bar = t.querySelector('.bar'), step = reel.firstElementChild.offsetHeight + 6;
+      return gsap.timeline({ repeat: -1 })
+        .fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: 1.5, ease: 'none' })
+        .to(reel, { y: -step, duration: .45, ease: 'power3.inOut' })
+        .set(reel, { y: 0 }).set(bar, { scaleX: 0 }); },
+  };
+
+  const cells = [...work.querySelectorAll('.cell')];
+  const parts = cells.map(c => ({ c, tag: split(c.querySelector('.tag')).chars, h3: split(c.querySelector('h3')).chars,
+    u: c.querySelector('.u'), go: c.querySelector('.go'), shot: c.querySelector('.shot'), type: c.querySelector('.type') }));
+  gsap.set(cells, { autoAlpha: 0 });
+  const reveal = (p, i) => {
+    const r = gsap.timeline({ delay: i * .12 })
+      .fromTo(p.c, { autoAlpha: 0, y: 90, scale: .94, clipPath: 'inset(16% 8% 16% 8% round 28px)' },
+                   { autoAlpha: 1, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 28px)', duration: 1.1, ease: 'expo.out', clearProps: 'clipPath' })
+      .from(p.tag, { opacity: 0, duration: .01, stagger: .025, ease: 'none' }, .25)                     // label types on
+      .from(p.h3, { yPercent: 115, fontWeight: 250, duration: .8, stagger: .035, ease: 'expo.out' }, .3) // name rises and thickens
+      .fromTo(p.u, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: .9, ease: 'power3.inOut', clearProps: 'clipPath' }, .5)
+      .from(p.go, { scale: 0, rotation: -180, duration: .8, ease: 'back.out(2)', clearProps: 'transform' }, .55);
+    if (p.shot) r.from(p.shot, { y: 140, rotation: -4, opacity: 0, duration: 1.3, ease: 'expo.out' }, .35);
+    if (p.type) { r.from(p.type, { yPercent: 25, opacity: 0, duration: .9, ease: 'expo.out' }, .45);
+      const kind = Object.keys(loops).find(k => p.type.classList.contains(k)); if (kind) r.call(() => loops[kind](p.type), null, 1.3); }
+  };
+  ScrollTrigger.batch(cells, { start: 'top 88%', once: true, interval: .1, batchMax: 3,
+    onEnter: batch => batch.forEach((c, i) => reveal(parts[cells.indexOf(c)], i)) });
+
+  // screens drift against the scroll inside their cards
+  parts.forEach(p => p.shot && gsap.fromTo(p.shot, { yPercent: 7 }, { yPercent: -7, ease: 'none',
+    scrollTrigger: { trigger: p.c, start: 'top bottom', end: 'bottom top', scrub: .6 } }));
+
+  // hover: the card tilts toward the pointer and a soft light follows it (mouse only)
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches) cells.forEach(c => {
+    gsap.set(c, { transformPerspective: 1100 });
+    const rx = gsap.quickTo(c, 'rotationX', { duration: .6, ease: 'power3' }), ry = gsap.quickTo(c, 'rotationY', { duration: .6, ease: 'power3' });
+    c.addEventListener('pointermove', e => { const b = c.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = (e.clientY - b.top) / b.height;
+      ry((x - .5) * 7); rx(-(y - .5) * 7); c.style.setProperty('--mx', x * 100 + '%'); c.style.setProperty('--my', y * 100 + '%'); });
+    c.addEventListener('pointerenter', () => { c.style.setProperty('--spot', 1); gsap.to(c, { y: -6, duration: .5, ease: 'power3.out' }); });
+    c.addEventListener('pointerleave', () => { rx(0); ry(0); c.style.setProperty('--spot', 0); gsap.to(c, { y: 0, duration: .6, ease: 'power3.out' }); });
+  });
+
+  gsap.from('#work .more', { opacity: 0, x: -24, duration: .8, ease: 'expo.out', scrollTrigger: { trigger: '#work .more', start: 'top 92%', once: true } });
+  addEventListener('load', () => ScrollTrigger.refresh());
 }
 
 // The sentence lights up phrase by phrase as it crosses the middle of the screen.
