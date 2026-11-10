@@ -79,6 +79,7 @@ h1 mark::after{content:"";position:absolute;left:-.04em;right:.18em;bottom:.08em
 .track span{display:flex;align-items:center;gap:56px}
 .track .star{font-size:.5em}
 .track{animation:slide 38s linear infinite}
+.gsap .track{animation:none}
 @keyframes slide{to{transform:translateX(-50%)}}
 
 /* ---------- work bento: 7 projects, 7 cells ---------- */
@@ -124,13 +125,14 @@ h2{font-size:clamp(40px,5vw,76px);font-weight:900;line-height:1.08;letter-spacin
 
 /* ---------- what we build: variable-weight words ---------- */
 .build{padding:40px 0 170px}
-.rows{margin-top:64px;border-top:1.5px solid var(--ink)}
-.row{display:grid;grid-template-columns:1fr 420px;align-items:end;gap:48px;padding:28px 0 36px}
-.row + .row{border-top:1px solid var(--line)}
-.word{font-size:clamp(52px,7.4vw,112px);font-weight:900;letter-spacing:-.07em;line-height:.95;transition:font-variation-settings .9s var(--ease)}
-.row.thin .word{font-variation-settings:"wght" 160}
-.row:hover .word{font-variation-settings:"wght" 900}
-.row.thin:hover .word{font-variation-settings:"wght" 900}
+.rows{margin-top:64px}
+.row{--ln:1;position:relative;display:grid;grid-template-columns:1fr 420px;align-items:end;gap:48px;padding:28px 0 36px}
+.row::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line);transform-origin:left;transform:scaleX(var(--ln,1))}
+.row:first-child::before{height:1.5px;background:var(--ink)}
+#fields .word .w{overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em;vertical-align:top}
+.word{font-size:clamp(52px,7.4vw,112px);font-weight:900;letter-spacing:-.07em;line-height:.95}
+.row.thin .word{font-weight:200}
+.gsap .row.thin .word{font-weight:900}
 .row h4{font-size:26px;font-weight:800;letter-spacing:-.04em}
 .row p{margin-top:10px;font-size:17px;line-height:1.7;color:var(--muted)}
 .chips{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
@@ -140,12 +142,14 @@ h2{font-size:clamp(40px,5vw,76px);font-weight:900;line-height:1.08;letter-spacin
 /* ---------- how we build: one sentence that fills in as you read ---------- */
 .how{background:var(--card);border-radius:44px;margin:0 20px;padding:150px 0 140px}
 .sentence{margin-top:56px;font-size:clamp(34px,4.4vw,64px);font-weight:800;letter-spacing:-.055em;line-height:1.28;max-width:20em}
-.sentence b{font-weight:800;color:rgba(30,31,29,.16);transition:color .6s var(--ease)}
+.sentence b{font-weight:800;color:rgba(30,31,29,.16);transition:color .6s var(--ease),background-size .7s var(--ease);
+  background:linear-gradient(var(--y),var(--y)) 0 88% / 0% 30% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .sentence b.lit{color:var(--ink)}
-.sentence b.now{color:var(--ink);background:linear-gradient(transparent 64%,var(--y) 64% 92%,transparent 92%)}
+.sentence b.now{color:var(--ink);background-size:100% 30%}
 .steps{margin-top:64px;display:flex;flex-wrap:wrap;gap:12px}
 .steps span{height:52px;padding:0 24px;border-radius:999px;border:1.5px solid var(--ink);display:inline-flex;align-items:center;font-weight:700;font-size:16px}
-.steps span.on{background:var(--y);border-color:var(--y)}
+.steps span{transition:background .4s var(--ease),border-color .4s var(--ease),transform .5s var(--ease)}
+.steps span.on{background:var(--y);border-color:var(--y);transform:scale(1.06)}
 
 /* ---------- closing: the hero film seen through the type ---------- */
 .cta{padding:170px 0 150px}
@@ -160,6 +164,7 @@ footer{background:var(--ink);color:#c9ccc7;padding:72px 0 56px;font-size:14px;li
 footer .wrap{display:grid;grid-template-columns:1fr auto;gap:48px}
 footer .logo{color:#fff}
 footer .line{margin-top:14px;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.03em}
+footer .line .w{overflow:hidden;vertical-align:top;padding-bottom:.08em}
 footer dl{display:grid;grid-template-columns:auto auto;gap:4px 24px}
 footer dt{color:#8d918b}
 footer .copy{grid-column:1/-1;border-top:1px solid #383a36;padding-top:24px;display:flex;justify-content:space-between}
@@ -441,6 +446,7 @@ if (window.gsap && window.ScrollTrigger) {
         n.replaceWith(f); }
       else if (n.nodeType === 1 && n.tagName !== 'BR') walk(n); });
     walk(el); return { chars, words }; };
+  window.splitText = split;
 
   const work = document.getElementById('work');
   // headline: letters rise out of their words and thicken; the lead clears from a blur, word by word
@@ -515,10 +521,71 @@ const parts = [...document.querySelectorAll('#sentence b')], steps = [...documen
 const stepOf = [0, 0, 1, 2, 3];
 const light = n => { parts.forEach((b, i) => { b.classList.toggle('lit', i < n); b.classList.toggle('now', i === n - 1); });
   steps.forEach((s, i) => s.classList.toggle('on', i === stepOf[Math.max(0, n - 1)])); };
-if (!qs.has('state')) { const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) light(parts.indexOf(e.target) + 1); }), { rootMargin: '-45% 0px -45% 0px' });
+if (!qs.has('state') && !window.ScrollTrigger) { const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) light(parts.indexOf(e.target) + 1); }), { rootMargin: '-45% 0px -45% 0px' });
   parts.forEach(b => so.observe(b)); }
 // Static review screenshots: ?state=mid shows the sentence half read.
 if (qs.get('state') === 'mid') light(3);
+
+/* ---------- the rest of the page: band, fields, method, contact, footer ---------- */
+if (window.gsap && window.ScrollTrigger && window.splitText) {
+  const split = window.splitText, fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  document.documentElement.classList.add('gsap');
+  const once = (trigger, start = 'top 85%') => ({ trigger, start, once: true });
+  const riseIn = (el, extra = {}) => gsap.from(split(el).chars, { yPercent: 115, rotate: 6, fontWeight: 200, duration: 1, ease: 'expo.out', stagger: .02, scrollTrigger: once(el), ...extra });
+  const blurIn = el => gsap.from(split(el).words, { opacity: 0, y: 14, filter: 'blur(8px)', duration: .7, ease: 'power3.out', stagger: .03, scrollTrigger: once(el, 'top 90%') });
+
+  // band: the names keep running and answer the scroll: faster when you scroll, backwards when you scroll up, leaning into the speed
+  const track = document.querySelector('.track');
+  const run = gsap.to(track, { xPercent: -50, duration: 38, ease: 'none', repeat: -1 }); run.totalTime(38 * 200);
+  const lean = gsap.quickTo(track, 'skewX', { duration: .4, ease: 'power3' });
+  let dir = 1;
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: self => { const v = self.getVelocity(); dir = self.direction || dir;
+    gsap.to(run, { timeScale: dir * Math.min(1 + Math.abs(v) / 260, 6), duration: .25, overwrite: true }); lean(gsap.utils.clamp(-10, 10, -v / 160)); } });
+  ScrollTrigger.addEventListener('scrollEnd', () => { gsap.to(run, { timeScale: dir, duration: .9, overwrite: true }); lean(0); });
+
+  // fields: lines draw across, names rise then gain weight as they reach the middle, notes and chips follow
+  const fields = document.getElementById('fields');
+  riseIn(fields.querySelector('h2')); blurIn(fields.querySelector('.lead'));
+  fields.querySelectorAll('.row').forEach(row => {
+    const word = row.querySelector('.word');
+    gsap.from(row, { '--ln': 0, duration: 1.3, ease: 'expo.inOut', scrollTrigger: once(row, 'top 92%') });
+    gsap.from(split(word).chars, { yPercent: 110, duration: .9, ease: 'expo.out', stagger: .03, scrollTrigger: once(row, 'top 88%') });
+    gsap.fromTo(word, { fontWeight: 150 }, { fontWeight: 900, ease: 'none', scrollTrigger: { trigger: row, start: 'top 85%', end: 'top 42%', scrub: .5 } });
+    gsap.from(row.querySelector('p'), { opacity: 0, y: 20, duration: .8, ease: 'power3.out', scrollTrigger: once(row, 'top 85%') });
+    gsap.from(row.querySelectorAll('.chips a'), { scale: .4, opacity: 0, duration: .6, ease: 'back.out(2.2)', stagger: .08, scrollTrigger: once(row, 'top 82%') });
+  });
+
+  // method: the panel opens with the scroll; the sentence fills word by word and the phrase being read lights its step
+  const how = document.querySelector('.how'), rad = parseFloat(getComputedStyle(how).borderTopLeftRadius) || 44;
+  gsap.fromTo(how, { clipPath: `inset(5% 3.5% 5% 3.5% round ${rad * 1.6}px)` }, { clipPath: `inset(0% 0% 0% 0% round ${rad}px)`, ease: 'none',
+    scrollTrigger: { trigger: how, start: 'top 95%', end: 'top 30%', scrub: .6 } });
+  riseIn(how.querySelector('h2'));
+  const sw = split(document.getElementById('sentence')).words;
+  if (!qs.has('state')) gsap.fromTo(sw, { color: 'rgba(30,31,29,.16)' }, { color: '#1E1F1D', ease: 'none', stagger: .1,
+    scrollTrigger: { trigger: '#sentence', start: 'top 78%', end: 'bottom 42%', scrub: .4,
+      onUpdate: self => light(Math.max(1, Math.ceil(self.progress * parts.length))) } });
+  gsap.from('#steps span', { y: 24, opacity: 0, duration: .6, ease: 'back.out(2)', stagger: .08, scrollTrigger: once('#steps', 'top 92%') });
+
+  // contact: the yellow block opens as a circle from the object, the film settles, the type rises, the button is magnetic
+  const mask = document.querySelector('.cta .mask'), film = mask.querySelector('video'), cbtn = document.querySelector('.cta .btn');
+  gsap.fromTo(mask, { clipPath: 'circle(0% at 72% 50%)' }, { clipPath: 'circle(150% at 72% 50%)', duration: 1.4, ease: 'expo.inOut', scrollTrigger: once(mask, 'top 80%') });
+  gsap.from(film, { scale: 1.35, duration: 2, ease: 'expo.out', scrollTrigger: once(mask, 'top 80%') });
+  riseIn(mask.querySelector('.knock'), { delay: .45, scrollTrigger: once(mask, 'top 80%') });
+  blurIn(document.querySelector('.cta .row2 p'));
+  gsap.from(cbtn, { scale: .6, opacity: 0, duration: .8, ease: 'back.out(2)', scrollTrigger: once(cbtn, 'top 95%') });
+  if (fine) { const mx = gsap.quickTo(cbtn, 'x', { duration: .5, ease: 'power3' }), my = gsap.quickTo(cbtn, 'y', { duration: .5, ease: 'power3' });
+    cbtn.addEventListener('pointermove', e => { const b = cbtn.getBoundingClientRect(); mx((e.clientX - b.left - b.width / 2) * .35); my((e.clientY - b.top - b.height / 2) * .35); });
+    cbtn.addEventListener('pointerleave', () => { mx(0); my(0); }); }
+
+  // footer: the star spins in, the line rises, the company details slide in one by one
+  const ft = document.querySelector('footer');
+  gsap.timeline({ scrollTrigger: once(ft, 'top 92%') })
+    .from(ft.querySelector('.logo .star'), { rotation: -180, scale: 0, duration: .9, ease: 'back.out(2)' })
+    .from(split(ft.querySelector('.line')).chars, { yPercent: 100, duration: .6, ease: 'expo.out', stagger: .015 }, .15)
+    .from(ft.querySelectorAll('dt, dd'), { opacity: 0, x: 16, duration: .5, ease: 'power3.out', stagger: .04 }, .2)
+    .from(ft.querySelector('.copy'), { opacity: 0, y: 10, duration: .6, ease: 'power3.out' }, .5);
+  ScrollTrigger.refresh();
+}
 </script>
 </body>
 </html>
